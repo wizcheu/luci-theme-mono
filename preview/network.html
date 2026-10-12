@@ -1,0 +1,10 @@
+<div class="cbi-map" id="view">
+ <h2>接口</h2><div class="cbi-map-descr">管理网络接口、地址与连接方式。本地演示数据。</div>
+ <ul class="cbi-tabmenu"><li class="cbi-tab"><a href="/cgi-bin/luci/admin/network/network">接口</a></li><li class="cbi-tab-disabled"><a href="/cgi-bin/luci/admin/status/components">设备样式</a></li></ul>
+ <div class="cbi-section"><h3>网络接口</h3><table class="table cbi-section-table"><thead><tr class="tr cbi-section-table-titles"><th class="th">接口</th><th class="th">协议 / 设备</th><th class="th">地址</th><th class="th">状态</th><th class="th right">操作</th></tr></thead><tbody>
+  <tr class="tr"><td class="td"><strong>LAN</strong></td><td class="td">静态地址<br><small>br-lan</small></td><td class="td">192.168.1.1/24</td><td class="td">已连接</td><td class="td cbi-section-actions"><button class="cbi-button cbi-button-edit" data-demo-action="edit">编辑</button><button class="cbi-button cbi-button-negative" data-demo-action="stop">停止</button></td></tr>
+  <tr class="tr"><td class="td"><strong>WAN</strong></td><td class="td">DHCP 客户端<br><small>eth1</small></td><td class="td">192.0.2.16/24</td><td class="td">已连接</td><td class="td cbi-section-actions"><button class="cbi-button cbi-button-edit" data-demo-action="edit">编辑</button><button class="cbi-button cbi-button-negative" data-demo-action="stop">停止</button></td></tr>
+  <tr class="tr"><td class="td"><strong>WAN6</strong></td><td class="td">DHCPv6 客户端<br><small>@wan</small></td><td class="td">2001:db8::16/64</td><td class="td">已连接</td><td class="td cbi-section-actions"><button class="cbi-button cbi-button-edit" data-demo-action="edit">编辑</button><button class="cbi-button cbi-button-negative" data-demo-action="stop">停止</button></td></tr>
+ </tbody></table></div>
+ <div class="cbi-page-actions"><button class="cbi-button" data-demo-action="add">添加新接口…</button><button class="cbi-button cbi-button-apply" data-demo-action="apply">保存并应用</button></div>
+</div>

@@ -1,0 +1,59 @@
+{#
+ Mono theme. Copyright 2026 wizcheu. Apache-2.0.
+ LuCI integration derived from luci-theme-bootstrap:
+ Copyright 2008 Steven Barth, 2012 David Menting, 2008-2022 Jo-Philipp Wich.
+-#}
+{%
+ import { getuid, getspnam } from 'luci.core';
+ const boardinfo = ubus.call('system', 'board') ?? {};
+ http.prepare_content('text/html; charset=UTF-8');
+-%}
+<!DOCTYPE html>
+<html lang="{{ dispatcher.lang }}" data-darkmode="false">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="color-scheme" content="light dark">
+ <meta name="darkreader-lock">
+ <title>{{ striptags(`${boardinfo.hostname ?? 'OpenWrt'}${dispatched?.title ? ` | ${_(dispatched.title)}` : ''}`) }}</title>
+ <script src="{{ media }}/appearance.js"></script>
+ <link rel="stylesheet" href="{{ media }}/compat.css">
+ <link rel="stylesheet" href="{{ media }}/mono.css">
+ <link rel="icon" href="{{ media }}/mark.svg" type="image/svg+xml">
+ {% if (node?.css): %}<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">{% endif %}
+ {% if (css): %}<style>{{ css }}</style>{% endif %}
+ <script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
+ <script src="{{ resource }}/cbi.js"></script>
+ <script defer src="{{ media }}/shell.js"></script>
+</head>
+<body class="mono lang_{{ dispatcher.lang }}{{ blank_page ? ' mono-auth' : '' }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}">
+{% if (!blank_page): %}
+ <a class="mono-skip" href="#maincontent">{{ _('Skip to content') }}</a>
+ <aside id="mono-sidebar" class="mono-sidebar" aria-label="{{ _('Main menu') }}">
+  <a class="mono-brand" href="{{ dispatcher.build_url('admin') }}">
+   <span class="mono-mark" aria-hidden="true"></span>
+   <span><strong>{{ striptags(boardinfo.hostname ?? 'OpenWrt') }}</strong><small>OpenWrt · Mono</small></span>
+  </a>
+  <div class="mono-nav-search"><input id="mono-menu-search" type="search" placeholder="{{ _('Search') }}" aria-label="{{ _('Search') }}" autocomplete="off"></div>
+  <nav id="mono-navigation" aria-label="{{ _('Main menu') }}"><span class="mono-menu-loading">{{ _('Loading…') }}</span></nav>
+  <div id="mono-menu-empty" class="mono-menu-empty" hidden>{{ _('No matching results') }}</div>
+  <div class="mono-sidebar-foot"><span class="mono-device-label">{{ striptags(boardinfo.model ?? 'OpenWrt') }}</span><div id="modemenu" hidden></div></div>
+ </aside>
+ <button id="mono-backdrop" class="mono-backdrop" type="button" tabindex="-1" aria-label="{{ _('Close') }}" hidden></button>
+ <div class="mono-workspace">
+  <header class="mono-topbar">
+   <button id="mono-sidebar-toggle" class="mono-icon-button" type="button" aria-label="{{ _('Toggle navigation') }}" aria-controls="mono-sidebar" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+   <span class="mono-topbar-divider" aria-hidden="true"></span>
+   <nav id="mono-breadcrumb" class="mono-breadcrumb" aria-label="{{ _('Location') }}"><span>{{ dispatched?.title ? _(dispatched.title) : 'OpenWrt' }}</span></nav>
+   <div class="mono-topbar-actions"><div id="indicators"></div><button id="mono-appearance" class="mono-icon-button" type="button" aria-label="{{ _('Dark mode') }}" aria-pressed="false" title="{{ _('Dark mode') }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg></button></div>
+  </header>
+  <main id="maincontent" class="container" tabindex="-1">
+   {% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
+   <div class="alert-message warning"><h4>{{ _('No password set!') }}</h4><p>{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}</p>{% if (dispatcher.lookup('admin/system/admin')): %}<a class="btn" href="{{ dispatcher.build_url('admin/system/admin') }}">{{ _('Go to password configuration...') }}</a>{% endif %}</div>
+   {% endif %}
+   {% if (boardinfo.rootfs_type == 'initramfs'): %}
+   <div class="alert-message warning"><h4>{{ _('System running in recovery (initramfs) mode.') }}</h4><p>{{ _('No changes to settings will be stored and are lost after rebooting. This mode should only be used to install a firmware upgrade') }}</p>{% if (dispatcher.lookup('admin/system/flash')): %}<a class="btn" href="{{ dispatcher.build_url('admin/system/flash') }}">{{ _('Go to firmware upgrade...') }}</a>{% endif %}</div>
+   {% endif %}
+   <noscript><div class="alert-message warning"><h4>{{ _('JavaScript required!') }}</h4><p>{{ _('You must enable JavaScript in your browser or LuCI will not work properly.') }}</p></div></noscript>
+   <div id="tabmenu" style="display:none"></div>
+{% endif %}

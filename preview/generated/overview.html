@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn" data-darkmode="false">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="color-scheme" content="light dark">
+ <meta name="darkreader-lock">
+ <title>OpenWrt | 概览</title>
+ <script src="/luci-static/mono/appearance.js"></script>
+ <link rel="stylesheet" href="/luci-static/mono/compat.css">
+ <link rel="stylesheet" href="/luci-static/mono/mono.css">
+ <link rel="icon" href="/luci-static/mono/mark.svg" type="image/svg+xml">
+ <script src="/cgi-bin/luci/admin/translations/zh-cn"></script>
+ <script src="/luci-static/resources/cbi.js"></script>
+ <script defer src="/luci-static/mono/shell.js"></script>
+</head>
+<body class="mono lang_zh-cn" data-page="admin-status-overview">
+ <a class="mono-skip" href="#maincontent">跳到内容</a>
+ <aside id="mono-sidebar" class="mono-sidebar" aria-label="主菜单">
+  <a class="mono-brand" href="/cgi-bin/luci/admin">
+   <span class="mono-mark" aria-hidden="true"></span>
+   <span><strong>OpenWrt</strong><small>OpenWrt · Mono</small></span>
+  </a>
+  <div class="mono-nav-search"><input id="mono-menu-search" type="search" placeholder="搜索菜单…" aria-label="搜索菜单…" autocomplete="off"></div>
+  <nav id="mono-navigation" aria-label="主菜单"><span class="mono-menu-loading">正在加载…</span></nav>
+  <div id="mono-menu-empty" class="mono-menu-empty" hidden>没有匹配的菜单</div>
+  <div class="mono-sidebar-foot"><span class="mono-device-label">Redmi AX6000</span><div id="modemenu" hidden></div></div>
+ </aside>
+ <button id="mono-backdrop" class="mono-backdrop" type="button" tabindex="-1" aria-label="关闭" hidden></button>
+ <div class="mono-workspace">
+  <header class="mono-topbar">
+   <button id="mono-sidebar-toggle" class="mono-icon-button" type="button" aria-label="展开或收起侧栏" aria-controls="mono-sidebar" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+   <span class="mono-topbar-divider" aria-hidden="true"></span>
+   <nav id="mono-breadcrumb" class="mono-breadcrumb" aria-label="当前位置"><span>概览</span></nav>
+   <div class="mono-topbar-actions"><div id="indicators"></div><button id="mono-appearance" class="mono-icon-button" type="button" aria-label="深色模式" aria-pressed="false" title="深色模式"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg></button></div>
+  </header>
+  <main id="maincontent" class="container" tabindex="-1">
+   <noscript><div class="alert-message warning"><h4>需要 JavaScript</h4><p>请启用 JavaScript 后使用 LuCI。</p></div></noscript>
+   <div id="tabmenu" style="display:none"></div>
+<div class="cbi-map">
+ <h2>概览</h2><div class="cbi-map-descr">本地主题预览 · 以下为演示数据，不连接路由器。</div>
+ <div id="view">
+  <div class="cbi-section">
+   <div class="cbi-title"><h3 style="display:flex;justify-content:space-between">系统<button class="btn" type="button" data-demo-hide>隐藏</button></h3></div>
+   <div><table class="table"><tbody>
+    <tr class="tr"><td class="td left" width="33%">主机名</td><td class="td left">OpenWrt</td></tr>
+    <tr class="tr"><td class="td left">型号</td><td class="td left">Xiaomi Redmi Router AX6000</td></tr>
+    <tr class="tr"><td class="td left">架构</td><td class="td left">ARMv8 Processor rev 4</td></tr>
+    <tr class="tr"><td class="td left">目标平台</td><td class="td left">mediatek / filogic</td></tr>
+    <tr class="tr"><td class="td left">固件版本</td><td class="td left">OpenWrt / LuCI（演示）</td></tr>
+    <tr class="tr"><td class="td left">运行时间</td><td class="td left">3 天 12 小时 28 分钟</td></tr>
+    <tr class="tr"><td class="td left">平均负载</td><td class="td left">0.04, 0.06, 0.03</td></tr>
+    <tr class="tr"><td class="td left">CPU 使用率</td><td class="td left">2%</td></tr>
+   </tbody></table></div>
+  </div>
+  <div class="cbi-section"><h3>内存</h3><div><table class="table"><tbody>
+   <tr class="tr"><td class="td left" width="33%">可用内存</td><td class="td"><div class="cbi-progressbar" title="386 MiB / 512 MiB (75%)"><div style="width:75%"></div></div></td></tr>
+   <tr class="tr"><td class="td left">已缓存</td><td class="td"><div class="cbi-progressbar" title="82 MiB / 512 MiB (16%)"><div style="width:16%"></div></div></td></tr>
+  </tbody></table></div></div>
+  <div class="cbi-section"><h3>网络</h3><div class="network-status-table"><div class="ifacebox"><div class="ifacebox-head center active"><strong>IPv4 上游</strong></div><div class="ifacebox-body left">协议：DHCP 客户端<br>地址：192.0.2.16<br>网关：192.0.2.1<br>连接时间：3 天 12 小时</div></div></div></div>
+ </div>
+</div>
+  </main>
+  <footer class="mono-footer"><span>Mono <span aria-hidden="true">·</span> <a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">LuCI</a></span><span>OpenWrt 预览</span></footer>
+ </div>
+ <script>L.require('menu-mono').catch(function(error) { var target = document.getElementById('mono-navigation'); target.textContent = error.message || String(error); });</script>
+</body>
+</html>

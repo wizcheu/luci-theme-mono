@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn" data-darkmode="false">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="color-scheme" content="light dark">
+ <meta name="darkreader-lock">
+ <title>OpenWrt | 系统</title>
+ <script src="/luci-static/mono/appearance.js"></script>
+ <link rel="stylesheet" href="/luci-static/mono/compat.css">
+ <link rel="stylesheet" href="/luci-static/mono/mono.css">
+ <link rel="icon" href="/luci-static/mono/mark.svg" type="image/svg+xml">
+ <script src="/cgi-bin/luci/admin/translations/zh-cn"></script>
+ <script src="/luci-static/resources/cbi.js"></script>
+ <script defer src="/luci-static/mono/shell.js"></script>
+</head>
+<body class="mono lang_zh-cn" data-page="admin-system-system">
+ <a class="mono-skip" href="#maincontent">跳到内容</a>
+ <aside id="mono-sidebar" class="mono-sidebar" aria-label="主菜单">
+  <a class="mono-brand" href="/cgi-bin/luci/admin">
+   <span class="mono-mark" aria-hidden="true"></span>
+   <span><strong>OpenWrt</strong><small>OpenWrt · Mono</small></span>
+  </a>
+  <div class="mono-nav-search"><input id="mono-menu-search" type="search" placeholder="搜索菜单…" aria-label="搜索菜单…" autocomplete="off"></div>
+  <nav id="mono-navigation" aria-label="主菜单"><span class="mono-menu-loading">正在加载…</span></nav>
+  <div id="mono-menu-empty" class="mono-menu-empty" hidden>没有匹配的菜单</div>
+  <div class="mono-sidebar-foot"><span class="mono-device-label">Redmi AX6000</span><div id="modemenu" hidden></div></div>
+ </aside>
+ <button id="mono-backdrop" class="mono-backdrop" type="button" tabindex="-1" aria-label="关闭" hidden></button>
+ <div class="mono-workspace">
+  <header class="mono-topbar">
+   <button id="mono-sidebar-toggle" class="mono-icon-button" type="button" aria-label="展开或收起侧栏" aria-controls="mono-sidebar" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+   <span class="mono-topbar-divider" aria-hidden="true"></span>
+   <nav id="mono-breadcrumb" class="mono-breadcrumb" aria-label="当前位置"><span>系统</span></nav>
+   <div class="mono-topbar-actions"><div id="indicators"></div><button id="mono-appearance" class="mono-icon-button" type="button" aria-label="深色模式" aria-pressed="false" title="深色模式"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg></button></div>
+  </header>
+  <main id="maincontent" class="container" tabindex="-1">
+   <noscript><div class="alert-message warning"><h4>需要 JavaScript</h4><p>请启用 JavaScript 后使用 LuCI。</p></div></noscript>
+   <div id="tabmenu" style="display:none"></div>
+<form onsubmit="return false"><div class="cbi-map" id="view">
+ <h2>系统</h2><div class="cbi-map-descr">配置主机名、时区和界面语言。本地预览中的修改不会写入路由器。</div>
+ <ul class="cbi-tabmenu"><li class="cbi-tab"><a href="/cgi-bin/luci/admin/system/system">常规设置</a></li><li class="cbi-tab-disabled"><a href="/cgi-bin/luci/admin/status/components">组件样式</a></li></ul>
+ <div class="cbi-section"><h3>常规设置</h3><div class="cbi-section-descr">这台设备的基本信息。</div><div class="cbi-section-node">
+  <div class="cbi-value"><label class="cbi-value-title" for="hostname">主机名</label><div class="cbi-value-field"><input class="cbi-input-text" id="hostname" value="OpenWrt"><div class="cbi-value-description">在局域网中标识这台路由器。</div></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="timezone">时区</label><div class="cbi-value-field"><select class="cbi-input-select" id="timezone"><option>Asia / Singapore</option><option>Asia / Shanghai</option><option>UTC</option></select></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="description">描述</label><div class="cbi-value-field"><input class="cbi-input-text" id="description" placeholder="例如：客厅主路由"></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="sync">启用 NTP 客户端</label><div class="cbi-value-field"><input class="cbi-input-checkbox" id="sync" type="checkbox" checked><div class="cbi-value-description">与网络时间服务器保持同步。</div></div></div>
+ </div></div>
+ <div class="cbi-section"><h3>语言和界面</h3><div class="cbi-section-node">
+  <div class="cbi-value"><label class="cbi-value-title" for="language">语言</label><div class="cbi-value-field"><select id="language"><option>简体中文</option><option>English</option></select></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="theme">主题</label><div class="cbi-value-field"><select id="theme"><option>Mono</option></select><div class="cbi-value-description">黑白配色、清晰层次，专注于网络管理。</div></div></div>
+ </div></div>
+ <div class="cbi-page-actions"><button class="cbi-button" type="button" data-demo-action="reset">重置</button><button class="cbi-button" type="button" data-demo-action="save">保存</button><button class="cbi-button cbi-button-apply" type="button" data-demo-action="apply">保存并应用</button></div>
+</div></form>
+  </main>
+  <footer class="mono-footer"><span>Mono <span aria-hidden="true">·</span> <a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">LuCI</a></span><span>OpenWrt 预览</span></footer>
+ </div>
+ <script>L.require('menu-mono').catch(function(error) { var target = document.getElementById('mono-navigation'); target.textContent = error.message || String(error); });</script>
+</body>
+</html>

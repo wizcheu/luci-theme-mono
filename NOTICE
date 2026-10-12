@@ -1,0 +1,20 @@
+Mono LuCI Theme
+Copyright 2026 wizcheu
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+htdocs/luci-static/mono/compat.css is a copy of LuCI Bootstrap's
+cascade.css from coolsnowwolf/luci commit 0a19762, downloaded 2026-10-12.
+Source: https://github.com/coolsnowwolf/luci/tree/0a19762/themes/luci-theme-bootstrap
+Copyright 2012 Nut & Bolt / David Menting. Based on Bootstrap v1.4.0,
+Copyright 2011 Twitter, Inc. Apache-2.0. Original notices remain in the file.
+Only trailing whitespace has been normalized; all CSS rules are unchanged.
+
+LuCI template and menu integration is adapted from luci-theme-bootstrap.
+Copyright 2008 Steven Barth; 2012 David Menting;
+2008-2022 Jo-Philipp Wich and LuCI contributors. Apache-2.0.
+
+The visual direction is inspired by shadcn/ui's neutral dashboard.
+Reference: https://ui.shadcn.com/view/new-york-v4/dashboard-01
+Mono uses native LuCI templates and widgets; it does not bundle React,
+Tailwind, Radix, shadcn/ui JavaScript, fonts, or remote assets.

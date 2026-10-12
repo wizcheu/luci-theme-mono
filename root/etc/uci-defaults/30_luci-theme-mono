@@ -1,0 +1,6 @@
+#!/bin/sh
+# Register the theme without changing the administrator's current selection.
+uci -q get luci.themes >/dev/null || uci set luci.themes=internal
+uci set luci.themes.Mono=/luci-static/mono
+uci commit luci
+exit 0

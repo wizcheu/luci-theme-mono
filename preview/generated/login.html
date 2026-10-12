@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn" data-darkmode="false">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="color-scheme" content="light dark">
+ <meta name="darkreader-lock">
+ <title>OpenWrt | 登录</title>
+ <script src="/luci-static/mono/appearance.js"></script>
+ <link rel="stylesheet" href="/luci-static/mono/compat.css">
+ <link rel="stylesheet" href="/luci-static/mono/mono.css">
+ <link rel="icon" href="/luci-static/mono/mark.svg" type="image/svg+xml">
+ <script src="/cgi-bin/luci/admin/translations/zh-cn"></script>
+ <script src="/luci-static/resources/cbi.js"></script>
+ <script defer src="/luci-static/mono/shell.js"></script>
+</head>
+<body class="mono lang_zh-cn mono-auth" data-page="admin">
+<main class="mono-login">
+ <div class="mono-login-brand"><span class="mono-mark" aria-hidden="true"></span><span>OpenWrt <span class="mono-muted">/ Mono</span></span></div>
+ <section class="mono-login-card" aria-labelledby="mono-login-title">
+  <h1 id="mono-login-title">登录路由器</h1>
+  <p>输入管理员账号，开始管理你的网络。</p>
+  <form method="post">
+   <label for="luci_username">用户名</label>
+   <input id="luci_username" name="luci_username" type="text" autocomplete="username" value="root" required>
+   <label for="luci_password">密码</label>
+   <input id="luci_password" name="luci_password" type="password" autocomplete="current-password" autofocus>
+   <button class="btn cbi-button-apply" type="submit">登录</button>
+  </form>
+ </section>
+ <p class="mono-login-footer">OpenWrt 预览</p>
+</main>
+</body>
+</html>

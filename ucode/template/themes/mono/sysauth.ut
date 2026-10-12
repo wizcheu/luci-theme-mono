@@ -1,0 +1,18 @@
+{% include('header', { blank_page: true }) %}
+<main class="mono-login">
+ <div class="mono-login-brand"><span class="mono-mark" aria-hidden="true"></span><span>OpenWrt <span class="mono-muted">/ Mono</span></span></div>
+ <section class="mono-login-card" aria-labelledby="mono-login-title">
+  <h1 id="mono-login-title">{{ _('Authorization Required') }}</h1>
+  <p>{{ _('Please enter your username and password.') }}</p>
+  {% if (fuser): %}<div class="alert-message error" role="alert">{{ _('Invalid username and/or password! Please try again.') }}</div>{% endif %}
+  <form method="post">
+   <label for="luci_username">{{ _('Username') }}</label>
+   <input id="luci_username" name="luci_username" type="text" autocomplete="username" value="{{ entityencode(duser, true) }}" required>
+   <label for="luci_password">{{ _('Password') }}</label>
+   <input id="luci_password" name="luci_password" type="password" autocomplete="current-password" autofocus>
+   <button class="btn cbi-button-apply" type="submit">{{ _('Log in') }}</button>
+  </form>
+ </section>
+ <p class="mono-login-footer">{{ version.distname }} {{ version.distversion }}</p>
+</main>
+{% include('footer', { blank_page: true }) %}

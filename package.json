@@ -1,0 +1,14 @@
+{
+ "name": "luci-theme-mono",
+ "version": "0.1.0",
+ "private": true,
+ "description": "Development-only browser checks. No npm dependencies ship to the router.",
+ "scripts": {
+  "test": "playwright test",
+  "preview": "python3 scripts/preview.py",
+  "build": "python3 scripts/build.py"
+ },
+ "devDependencies": {
+  "@playwright/test": "1.64.0"
+ }
+}

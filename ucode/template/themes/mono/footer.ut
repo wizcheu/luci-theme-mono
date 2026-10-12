@@ -1,0 +1,8 @@
+{% if (!blank_page): %}
+  </main>
+  <footer class="mono-footer"><span>Mono <span aria-hidden="true">·</span> <a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">{{ version.luciname }}</a></span><span>{{ version.distname }} {{ version.distversion }}</span></footer>
+ </div>
+ <script>L.require('menu-mono').catch(function(error) { var target = document.getElementById('mono-navigation'); target.textContent = error.message || String(error); });</script>
+{% endif %}
+</body>
+</html>
