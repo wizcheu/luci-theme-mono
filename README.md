@@ -1,5 +1,7 @@
 # Mono for LuCI
 
+[![Build Mono theme](https://github.com/wizcheu/luci-theme-mono/actions/workflows/build.yml/badge.svg)](https://github.com/wizcheu/luci-theme-mono/actions/workflows/build.yml)
+
 以 shadcn/ui 的 neutral dashboard 为视觉参考，为 OpenWrt 原生 LuCI 开发的黑白极简主题。
 
 白色主界面、浅灰侧栏、细边框、黑色主按钮、自然留白。支持本地浅色 / 深色切换、可收起侧栏、菜单搜索和手机抽屉导航。运行时仅使用 LuCI、CSS 和原生 JavaScript，无 React、外部字体或 CDN 请求。
@@ -73,7 +75,7 @@ uci commit luci
 在已经更新并安装 feeds 的 OpenWrt / LEDE 源码根目录：
 
 ```sh
-git clone <你的仓库地址> package/luci-theme-mono
+git clone https://github.com/wizcheu/luci-theme-mono.git package/luci-theme-mono
 make menuconfig
 # LuCI → Themes → luci-theme-mono
 make package/luci-theme-mono/compile V=s
@@ -83,7 +85,7 @@ make package/luci-theme-mono/compile V=s
 
 ## GitHub 与制品
 
-这是独立 Git 仓库。创建自己的 GitHub 仓库后配置 `origin`，推送 `main` 即可触发 **Build Mono theme**。
+项目仓库：[wizcheu/luci-theme-mono](https://github.com/wizcheu/luci-theme-mono)。推送 `main` 即可触发 [Build Mono theme](https://github.com/wizcheu/luci-theme-mono/actions/workflows/build.yml)。
 
 - 普通 push / PR / 手动触发：模板检查、安装包测试、桌面与手机浏览器测试，上传 IPK、源码包、校验和及预览截图到 Actions Artifacts。
 - 推送 `v*` 标签：全部检查通过后自动创建 GitHub Release 并上传制品。
@@ -92,7 +94,6 @@ make package/luci-theme-mono/compile V=s
 首次发布示例：
 
 ```sh
-git remote add origin git@github.com:<用户名>/luci-theme-mono.git
 git push -u origin main
 git tag v0.1.0
 git push origin v0.1.0
