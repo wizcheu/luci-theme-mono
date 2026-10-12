@@ -35,7 +35,7 @@ python3 scripts/build.py
 
 输出到 `dist/`：
 
-- `luci-theme-mono_0.1.0-3_all.ipk`
+- `luci-theme-mono_0.1.0-4_all.ipk`
 - `SHA256SUMS`
 - `manifest.json`：包哈希及每个安装文件的哈希
 
@@ -46,7 +46,7 @@ python3 scripts/build.py
 将 IPK 上传至路由器 `/tmp/`，然后执行：
 
 ```sh
-opkg install /tmp/luci-theme-mono_0.1.0-3_all.ipk
+opkg install /tmp/luci-theme-mono_0.1.0-4_all.ipk
 ```
 
 安装只注册主题，保持当前主题选择。进入 **系统 → 系统 → 语言和界面 → 主题 → Mono**，保存并应用，再刷新页面。

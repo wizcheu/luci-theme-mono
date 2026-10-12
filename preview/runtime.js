@@ -43,6 +43,38 @@
   document.querySelectorAll('[data-demo-password]').forEach(function(button) {
    button.addEventListener('click', function() { var input = button.parentElement.querySelector('input'); input.type = input.type === 'password' ? 'text' : 'password'; });
   });
+  // Reproduce LuCI's separate open list and cloned label for visual checks.
+  document.querySelectorAll('[data-demo-dropdown]').forEach(function(dropdown) {
+   var list = dropdown.querySelector('ul');
+   function close() {
+    if (!dropdown.hasAttribute('open')) return;
+    dropdown.querySelector('ul.preview').remove();
+    dropdown.removeAttribute('open');
+    list.classList.remove('dropdown');
+    list.removeAttribute('style');
+    list.querySelectorAll('li').forEach(function(item) { item.classList.remove('focus'); item.removeAttribute('tabindex'); });
+    dropdown.focus();
+   }
+   dropdown.querySelector('.open').addEventListener('click', function() {
+    if (dropdown.hasAttribute('open')) { close(); return; }
+    var preview = list.cloneNode(true);
+    preview.classList.add('preview');
+    list.after(preview);
+    dropdown.setAttribute('open', '');
+    list.classList.add('dropdown');
+    var rect = dropdown.getBoundingClientRect();
+    list.style[innerHeight - rect.bottom < 150 && rect.top > 150 ? 'bottom' : 'top'] = rect.height + 'px';
+    list.style.maxHeight = '240px';
+    list.querySelectorAll('li').forEach(function(item) { item.setAttribute('tabindex', '0'); });
+    var selected = list.querySelector('[selected]');
+    selected.classList.add('focus');
+    selected.focus({ preventScroll: true });
+   });
+   dropdown.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') { close(); event.stopPropagation(); }
+   });
+   document.addEventListener('click', function(event) { if (!dropdown.contains(event.target)) close(); });
+  });
   // Demo services have no backend; keep navigation within the preview.
   document.addEventListener('click', function(event) {
    var link = event.target.closest('a');

@@ -200,7 +200,15 @@ input[disabled], select[disabled], textarea[disabled], button[disabled], .cbi-dr
 .modal h4 { font-size: 18px; font-weight: 600; margin-bottom: 18px; }
 .modal .cbi-section { padding: 0; border: 0; }
 .modal > .button-row { margin-top: 22px; gap: 8px; }
-.cbi-dropdown > ul.dropdown, .cbi-dropdown[open] > ul { border-color: var(--mono-border); border-radius: 7px; background: var(--mono-background); box-shadow: 0 8px 20px #0002; }
+.mono .cbi-dropdown[open] > ul.dropdown { margin: 4px 0 !important; padding: 4px; border: 1px solid var(--mono-border); border-radius: 9px; background: var(--mono-background); color: var(--mono-foreground); box-shadow: 0 8px 24px #0002; }
+.mono .cbi-dropdown[open] > ul.dropdown > li { min-height: 34px; padding: 7px 10px; border: 0; border-radius: 5px; background: transparent; color: var(--mono-foreground); font-size: 12px; line-height: 20px; }
+.mono .cbi-dropdown[open] > ul.dropdown > li + li { margin-top: 2px; }
+.mono .cbi-dropdown[open] > ul.dropdown > li:is([selected], .focus, :hover) { background: var(--mono-hover); color: var(--mono-foreground); }
+.mono .cbi-dropdown[open] > ul.dropdown > li[selected] { font-weight: 600; }
+.mono .cbi-dropdown[open] > ul.dropdown > li:focus-visible { outline: 2px solid var(--mono-ring); outline-offset: -2px; }
+/* LuCI clones the closed label into ul.preview while the real list is open. */
+.mono .cbi-dropdown > ul.preview { border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.mono .cbi-dropdown.cbi-button:is(:hover, [open]) { filter: none; }
 .cbi-dropdown:not(.btn):not(.cbi-button) { min-height: 37px; height: auto; padding: 4px; }
 .cbi-dropdown > ul > li { color: var(--mono-foreground); }
 .cbi-dropdown.cbi-button > ul:not(.dropdown) > li { color: inherit; }
