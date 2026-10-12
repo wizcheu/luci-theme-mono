@@ -34,6 +34,15 @@
   require: function(name) { return fetch('/luci-static/resources/' + name + '.js').then(function(response) { return response.text(); }).then(function(source) { return new Function('baseclass', 'ui', 'L', 'E', '_', source)(baseclass, ui, L, E, _); }); }
  };
  document.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById('controls')) {
+   // LuCI renders the polling control as a clickable span, not a button.
+   var refresh = E('span', { 'data-indicator': 'poll-status', 'data-clickable': 'true', 'data-style': 'active' }, '刷新');
+   refresh.addEventListener('click', function() { refresh.dataset.style = refresh.dataset.style === 'active' ? 'inactive' : 'active'; });
+   document.getElementById('indicators').append(refresh);
+  }
+  document.querySelectorAll('[data-demo-password]').forEach(function(button) {
+   button.addEventListener('click', function() { var input = button.parentElement.querySelector('input'); input.type = input.type === 'password' ? 'text' : 'password'; });
+  });
   // Demo services have no backend; keep navigation within the preview.
   document.addEventListener('click', function(event) {
    var link = event.target.closest('a');

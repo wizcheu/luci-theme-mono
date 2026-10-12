@@ -35,7 +35,7 @@ python3 scripts/build.py
 
 输出到 `dist/`：
 
-- `luci-theme-mono_0.1.0-1_all.ipk`
+- `luci-theme-mono_0.1.0-3_all.ipk`
 - `SHA256SUMS`
 - `manifest.json`：包哈希及每个安装文件的哈希
 
@@ -46,7 +46,7 @@ python3 scripts/build.py
 将 IPK 上传至路由器 `/tmp/`，然后执行：
 
 ```sh
-opkg install /tmp/luci-theme-mono_0.1.0-1_all.ipk
+opkg install /tmp/luci-theme-mono_0.1.0-3_all.ipk
 ```
 
 安装只注册主题，保持当前主题选择。进入 **系统 → 系统 → 语言和界面 → 主题 → Mono**，保存并应用，再刷新页面。
@@ -117,7 +117,7 @@ ucode -L "$PWD/preview/stubs" scripts/render-preview.uc
 
 GitHub Actions 从固定的官方 ucode 提交构建校验器，并确认生成的预览已同步。预览 stubs 仅替代服务器的 board / core 数据，**不会安装到路由器**。
 
-初版验证记录见 [docs/validation.md](docs/validation.md)。已在 Redmi AX6000 上安装、切换并验证实际登录页；README 顶部截图来自本地演示页面，真实后台与插件页面仍待登录后验收。
+验证记录见 [docs/validation.md](docs/validation.md)。已在 Redmi AX6000 上安装并验证实际登录页及系统设置的日志、时间同步标签；README 顶部截图来自本地演示页面。插件页面和设置提交行为仍待进一步验收。
 
 ## 目录
 

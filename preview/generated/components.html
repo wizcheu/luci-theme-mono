@@ -38,6 +38,19 @@
    <noscript><div class="alert-message warning"><h4>需要 JavaScript</h4><p>请启用 JavaScript 后使用 LuCI。</p></div></noscript>
    <div id="tabmenu" style="display:none"></div>
 <div class="cbi-map" id="view"><h2>组件预览</h2><div class="cbi-map-descr">验证 LuCI 常用控件与提示状态。仅用于开发预览，不安装到路由器。</div>
+ <ul class="cbi-tabmenu" aria-label="示例标签"><li class="cbi-tab-disabled"><a href="#controls">负载</a></li><li class="cbi-tab"><a href="#controls">带宽</a></li><li class="cbi-tab-disabled"><a href="#controls">无线</a></li><li class="cbi-tab-disabled"><a href="#controls">连接</a></li></ul>
+ <div class="cbi-section" id="controls"><h3>原生控件细节</h3>
+  <!-- Match the DOM emitted by LuCI ui.js, system.js and dmesg.js. -->
+  <div class="cbi-value"><span class="cbi-value-title">日志筛选</span><div class="cbi-value-field" id="content_syslog"><div style="margin-bottom:10px"><label for="invertLogTextSearch" style="margin-right:5px">排除</label><input id="invertLogTextSearch" type="checkbox" class="cbi-input-checkbox"><label for="logTextFilter" style="margin:0 5px">包含：</label><input id="logTextFilter" class="cbi-input-text"></div><label for="fixture-reverse" style="margin-right:5px">倒序</label><input id="fixture-reverse" type="checkbox" checked></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="fixture-flag">启用 NTP 客户端</label><div class="cbi-value-field"><div class="cbi-checkbox"><input type="checkbox" id="fixture-flag" checked><label for="fixture-flag"></label></div></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="localtime">本地时间</label><div class="cbi-value-field"><input id="localtime" type="text" readonly value="12 Oct 2026, 17:31:42 GMT+8"><br><span class="control-group"><button class="cbi-button cbi-button-apply" data-demo-action="apply">与浏览器同步</button> <button class="cbi-button cbi-button-apply" data-demo-action="apply">与 NTP 服务器同步</button></span></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="fixture-log-size">系统日志缓冲区大小</label><div class="cbi-value-field"><div><input id="fixture-log-size" class="cbi-input-text" value="128"></div><div class="cbi-value-description">kiB</div></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="fixture-log-level">日志记录级别</label><div class="cbi-value-field"><select id="fixture-log-level"><option>调试 (Debug)</option></select><div class="cbi-value-description">仅影响 dmesg 内核日志</div></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="fixture-ntp">候选 NTP 服务器</label><div class="cbi-value-field"><div class="cbi-dynlist"><div class="item" tabindex="0"><span>time.apple.com</span></div><div class="item" tabindex="0"><span>time.google.com</span></div><div class="add-item control-group"><input class="cbi-input-text" id="fixture-ntp" type="text"><div class="btn cbi-button cbi-button-add">+</div></div></div><div class="cbi-value-description">候选的上游 NTP 服务器列表，用于同步时间。</div></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="fixture-password">密码</label><div class="cbi-value-field"><div><div class="control-group"><input id="fixture-password" type="password" class="cbi-input-password" value="demo-only"><button type="button" class="cbi-button cbi-button-neutral" aria-label="显示或隐藏示例密码" data-demo-password>∗</button></div></div></div></div>
+  <div class="cbi-value"><label class="cbi-value-title" for="fixture-file">文件选择</label><div class="cbi-value-field"><div class="control-group"><input id="fixture-file" type="text" placeholder="选择文件"><button class="cbi-button cbi-button-action" data-demo-action="edit">浏览…</button></div></div></div>
+ </div>
+ <div class="cbi-section"><h3>系统</h3><table class="table" id="fixture-table"><tbody><tr class="tr"><td class="td">主机名</td><td class="td">OpenWrt</td></tr><tr class="tr"><td class="td">型号</td><td class="td">Redmi AX6000</td></tr><tr class="tr"><td class="td">架构</td><td class="td">ARMv8 Processor × 4</td></tr></tbody></table></div>
  <div class="alert-message warning"><h4>尚有未应用的更改</h4><p>保存并应用后，更改才会在系统中生效。</p></div>
  <div class="alert-message error" role="alert"><h4>无法保存设置</h4><p>请检查标记的输入项，然后重试。</p></div>
  <div class="alert-message success"><h4>设置已保存</h4><p>这是成功提示的样式示例。</p></div>
@@ -49,6 +62,7 @@ option enabled '1'</textarea></div></div>
   <div class="cbi-value"><span class="cbi-value-title">按钮</span><div class="cbi-value-field"><button class="cbi-button cbi-button-apply" data-demo-action="apply">主要操作</button> <button class="cbi-button" data-demo-action="edit">打开弹窗</button> <button class="cbi-button cbi-button-remove" data-demo-action="remove">删除</button> <button class="cbi-button" disabled>不可用</button></div></div>
  </div>
  <div class="cbi-section"><h3>暂无数据</h3><p class="cbi-section-descr">目前没有可显示的记录。连接设备后，这里将显示相关信息。</p></div>
+ <div class="cbi-page-actions"><div class="cbi-dropdown btn cbi-button cbi-button-apply important" tabindex="0"><ul tabindex="-1"><li data-value="0" selected display="0">保存并应用</li><li data-value="1">强制应用</li></ul><span class="more" tabindex="-1">···</span><span class="open" tabindex="-1">▾</span><div><input type="hidden"></div></div> <button class="cbi-button cbi-button-save" data-demo-action="save">保存</button> <button class="cbi-button cbi-button-reset" data-demo-action="save">复位</button></div>
 </div>
   </main>
   <footer class="mono-footer"><span>Mono <span aria-hidden="true">·</span> <a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">LuCI</a></span><span>OpenWrt 预览</span></footer>

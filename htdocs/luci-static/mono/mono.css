@@ -105,6 +105,8 @@ header.mono-topbar { position: sticky; top: 0; z-index: 40; flex-shrink: 0; disp
 .mono-topbar-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
 #indicators { display: flex; align-items: center; gap: 6px; font-size: 11px; }
 #indicators > * { border-radius: 6px; box-shadow: none; }
+.mono-topbar #indicators > [data-indicator][data-clickable] { display: inline-flex; align-items: center; justify-content: center; min-height: 35px; padding: 7px 13px; margin: 0; border: 1px solid var(--mono-border); border-radius: 7px; font-size: 12px; font-weight: 500; line-height: 1.5; }
+.mono-topbar #indicators > [data-clickable][data-style="active"] { border-color: var(--mono-primary); }
 .mono-sidebar-collapsed .mono-sidebar { transform: translateX(-100%); }
 .mono-sidebar-collapsed .mono-workspace { margin-left: 0; }
 #maincontent.container { flex: 1; width: 100%; max-width: 1560px; margin: 0 auto; padding: 32px 36px 48px; min-width: 0; }
@@ -128,7 +130,8 @@ p, .cbi-map-descr, .cbi-section-descr { font-size: 13px; line-height: 1.65; }
 .cbi-value + .cbi-value { border-top: 1px solid var(--mono-border); }
 .cbi-value label.cbi-value-title, .cbi-value-title { flex: 0 0 200px; text-align: left; font-size: 13px; line-height: 1.6; padding: 9px 16px 0 0; color: var(--mono-foreground); }
 .cbi-value-field { margin-left: 20px; min-width: 0; }
-.cbi-value-description { margin-top: 7px; color: var(--mono-muted); font-size: 12px; line-height: 1.65; }
+.cbi-value-description { margin: 8px 0 0; padding-left: 20px; color: var(--mono-muted); font-size: 12px; line-height: 1.65; }
+.cbi-value-description:not(:empty)::before { left: 0; top: calc((1.65em - 14px) / 2); width: 14px; height: 14px; margin: 0; background: currentColor; }
 label, input, button, select, textarea { font-family: var(--font-sans); font-size: 13px; }
 input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]), select, textarea, .cbi-select, .cbi-dropdown:not(.btn):not(.cbi-button) { border: 1px solid var(--mono-border); border-radius: 7px; background: var(--mono-background); color: var(--mono-foreground); box-shadow: 0 1px 2px #00000004; }
 input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, .cbi-select { height: 37px; max-width: 100%; padding: 7px 11px; }
@@ -138,7 +141,15 @@ input:focus, select:focus, textarea:focus, .cbi-dropdown:focus { border-color: v
 .mono :is(input, select, textarea, button, .btn, .cbi-button, .cbi-dropdown):is(:focus, :hover) { --focus-color-rgb: 115, 115, 115; border-color: var(--mono-ring) !important; }
 .mono :is(button, .btn, .cbi-button):is(:focus, :hover) { box-shadow: none; }
 .mono :is(a, button, input, textarea, select, summary, [tabindex]):focus-visible { outline: 2px solid var(--mono-ring); outline-offset: 3px; }
-input[type="checkbox"], input[type="radio"] { accent-color: var(--mono-primary); width: 16px; height: 16px; margin-top: 10px; }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--mono-primary); width: 16px; height: 16px; padding: 0; margin: 0; vertical-align: middle; flex-shrink: 0; }
+.mono :is(input[type="checkbox"], input[type="radio"])::before { box-sizing: border-box; width: 16px; height: 16px; background: var(--mono-background); }
+.mono :is(input[type="checkbox"], input[type="radio"])::after { top: 3px; left: 3px; }
+.mono :is(input[type="checkbox"], input[type="radio"]):checked::before { background: var(--mono-primary); border-color: var(--mono-primary); }
+.mono :is(input[type="checkbox"], input[type="radio"]):checked::after { background: var(--mono-on-primary); }
+.mono :is(input[type="checkbox"], input[type="radio"]):focus::before { --focus-color-rgb: 115, 115, 115; box-shadow: none; }
+.mono :is(input[type="checkbox"], input[type="radio"]).cbi-input-invalid::before { border-color: var(--mono-danger) !important; }
+.mono label > :is(input[type="checkbox"], input[type="radio"]) { vertical-align: middle; }
+.mono .cbi-value-field > .cbi-checkbox, .mono .cbi-value-field > div > .cbi-radio { min-height: 37px; height: auto; gap: 8px; }
 input[disabled], select[disabled], textarea[disabled], button[disabled], .cbi-dropdown[disabled] { opacity: .5; cursor: not-allowed; }
 .cbi-input-invalid:not([type="checkbox"]):not([type="radio"]), .cbi-input-invalid.cbi-dropdown { border-color: var(--mono-danger) !important; }
 .mono :is(input, select, textarea, .cbi-dropdown).cbi-input-invalid { border-color: var(--mono-danger) !important; }
@@ -150,12 +161,14 @@ input[disabled], select[disabled], textarea[disabled], button[disabled], .cbi-dr
 .cbi-button:is(.cbi-button-remove, .cbi-button-negative, .cbi-button-reset):hover { color: var(--mono-danger); background: var(--mono-hover); }
 .cbi-page-actions { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; padding: 20px 0 0; margin-top: 24px; border-top: 1px solid var(--mono-border); background: transparent; }
 .cbi-page-actions > *, .cbi-section-actions > * { margin: 0; }
+.mono .cbi-page-actions .cbi-button-save { background: var(--mono-background); border-color: var(--mono-border); color: var(--mono-foreground); }
+.mono .cbi-page-actions .cbi-button-save:hover { background: var(--mono-hover); color: var(--mono-foreground); }
 .tabs, .cbi-tabmenu { display: flex; flex-wrap: wrap; gap: 3px; background: transparent; border-bottom: 1px solid var(--mono-border); margin: 0 0 25px; padding: 0; list-style: none; }
 .tabs > li, .cbi-tabmenu > li, .tabs > li:not(.active), .cbi-tabmenu > .cbi-tab-disabled { float: none; height: auto; margin: 0 0 -1px; border: 0; border-bottom: 2px solid transparent; background: transparent; border-radius: 0; box-shadow: none; }
 .tabs > li > a, .cbi-tabmenu > li > a { display: block; padding: 11px 15px; font-size: 13px; line-height: 1.5; color: var(--mono-muted); background: transparent; border: 0; }
 .tabs > li.active, .cbi-tabmenu > li.cbi-tab { border-bottom-color: var(--mono-foreground); background: transparent; }
 .tabs > li.active > a, .cbi-tabmenu > li.cbi-tab > a { color: var(--mono-foreground); font-weight: 600; }
-.tabs > li:hover, .cbi-tabmenu > li:hover { background: var(--mono-hover); }
+.mono :is(.tabs, .cbi-tabmenu) > li:hover { background: var(--mono-hover); }
 .tabs > li > a:hover, .cbi-tabmenu > li > a:hover { text-decoration: none; }
 .table { width: 100%; margin: 0; border-spacing: 0; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
 .table .th, .table .td { padding: 13px 12px; border-color: var(--mono-border); line-height: 1.6; vertical-align: middle; }
@@ -163,8 +176,8 @@ input[disabled], select[disabled], textarea[disabled], button[disabled], .cbi-dr
 .table .tr:first-child .th { border-bottom: 1px solid var(--mono-border); }
 .table .tr:nth-child(2n), .table .tr:nth-child(2n) .td { background: transparent; }
 .table .tr:hover > .td { background: var(--mono-subtle); }
-.table .td:first-child, .table .th:first-child { padding-left: 0; }
-.table .td:last-child, .table .th:last-child { padding-right: 0; }
+.table .td:first-child, .table .th:first-child { padding-left: 12px; }
+.table .td:last-child, .table .th:last-child { padding-right: 12px; }
 .table .td .cbi-button { margin: 3px; }
 .table .td input, .table .td select { min-width: 0; }
 .ifacebox { border: 1px solid var(--mono-border); border-radius: 9px; box-shadow: none; overflow: hidden; background: var(--mono-background); }
@@ -190,8 +203,22 @@ input[disabled], select[disabled], textarea[disabled], button[disabled], .cbi-dr
 .cbi-dropdown > ul.dropdown, .cbi-dropdown[open] > ul { border-color: var(--mono-border); border-radius: 7px; background: var(--mono-background); box-shadow: 0 8px 20px #0002; }
 .cbi-dropdown:not(.btn):not(.cbi-button) { min-height: 37px; height: auto; padding: 4px; }
 .cbi-dropdown > ul > li { color: var(--mono-foreground); }
-.cbi-dynlist > .item { border-color: var(--mono-border); border-radius: 7px; box-shadow: none; padding: 8px 30px 8px 10px; }
-.cbi-dynlist > .item::after { border-color: var(--mono-border); color: var(--mono-muted); }
+.cbi-dropdown.cbi-button > ul:not(.dropdown) > li { color: inherit; }
+.control-group { align-items: center; gap: 8px; flex-wrap: wrap; max-width: 100%; }
+/* Native LuCI separates the clock from its actions with a line break. */
+#localtime + br + .control-group { margin-top: 8px; }
+/* Joined inputs retain LuCI's native password, upload and list behavior. */
+.mono .control-group:has(> :is(input, select)) { flex-wrap: nowrap; gap: 0; width: fit-content; align-items: stretch; }
+/* Override the base input rule's type exclusions only for joined corners. */
+.mono .control-group > :is(input, select):has(~ :is(.cbi-button, button)) { flex: 1 1 auto; min-width: 0; margin: 0; border-radius: 7px 0 0 7px !important; }
+.mono .control-group > :is(input, select) ~ :is(.cbi-button, button) { flex: 0 0 auto; min-width: 37px; min-height: 37px; height: 37px; margin: 0 0 0 -1px; padding: 7px 11px; border: 1px solid var(--mono-border); border-radius: 0 7px 7px 0; background: var(--mono-subtle); color: var(--mono-foreground); box-shadow: none; filter: none; }
+.mono .control-group > :is(input, select) ~ :is(.cbi-button, button):hover { background: var(--mono-hover); }
+.mono .control-group > :is(input, select, button, .cbi-button):focus-visible { position: relative; z-index: 1; }
+.cbi-dynlist { gap: 6px; min-width: 0; max-width: min(400px, 100%); }
+.cbi-dynlist > .item { min-height: 37px; margin: 0; border-color: var(--mono-border); border-radius: 7px; box-shadow: none; padding: 8px 48px 8px 11px; }
+.cbi-dynlist > .item::after { width: 37px; padding: 0; justify-content: center; border-color: var(--mono-border); border-radius: 0 7px 7px 0; background: var(--mono-subtle); color: var(--mono-muted); }
+.mono .cbi-dynlist > .item:hover::after { --focus-color-rgb: 115, 115, 115; background: var(--mono-hover); box-shadow: none; }
+.mono .cbi-dynlist > .add-item { width: 100%; }
 pre, code { font-family: var(--font-mono); background: var(--mono-subtle); color: var(--mono-foreground); border-color: var(--mono-border); border-radius: 6px; font-size: 12px; }
 pre { padding: 16px; line-height: 1.65; overflow: auto; }
 .mono-auth { display: grid !important; place-items: center; background: var(--mono-subtle) !important; }
