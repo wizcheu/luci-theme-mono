@@ -117,7 +117,7 @@ ucode -L "$PWD/preview/stubs" scripts/render-preview.uc
 
 GitHub Actions 从固定的官方 ucode 提交构建校验器，并确认生成的预览已同步。预览 stubs 仅替代服务器的 board / core 数据，**不会安装到路由器**。
 
-初版验证记录见 [docs/validation.md](docs/validation.md)。本地截图来自演示页面；还需要在目标固件上进行实际安装与插件页面验收。
+初版验证记录见 [docs/validation.md](docs/validation.md)。已在 Redmi AX6000 上安装、切换并验证实际登录页；README 顶部截图来自本地演示页面，真实后台与插件页面仍待登录后验收。
 
 ## 目录
 
