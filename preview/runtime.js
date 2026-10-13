@@ -29,12 +29,14 @@
  });
  var parts = location.pathname.replace('/cgi-bin/luci/', '').split('/');
  if (parts[0] !== 'admin') parts = ['admin', 'status', 'mono'];
- var ui = { menu: { load: function() { return menuPromise; }, getChildren: function(node) { return Object.values(node.children || {}); } } };
+ var localData = {};
+ var session = { getLocalData: function(key) { return localData[key]; }, setLocalData: function(key, value) { localData[key] = value; } };
+ var ui = { menu: { load: function() { return menuPromise; }, flushCache: function() {}, getChildren: function(node) { return Object.values(node.children || {}); } } };
  var baseclass = { extend: function(object) { var instance = Object.create(object); instance.__init__(); return instance; } };
  window.L = {
   env: { requestpath: parts, dispatchpath: parts },
   url: function() { return '/cgi-bin/luci/' + Array.from(arguments).join('/'); },
-  require: function(name) { return fetch('/luci-static/resources/' + name + '.js').then(function(response) { return response.text(); }).then(function(source) { return new Function('baseclass', 'ui', 'L', 'E', '_', source)(baseclass, ui, L, E, _); }); }
+  require: function(name) { return fetch('/luci-static/resources/' + name + '.js').then(function(response) { return response.text(); }).then(function(source) { return new Function('baseclass', 'ui', 'session', 'L', 'E', '_', source)(baseclass, ui, session, L, E, _); }); }
  };
  var paths = {
   close: 'M6 6l12 12M6 18 18 6', check: 'm5 12 4 4L19 6',

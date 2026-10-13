@@ -35,6 +35,24 @@ test('all captured native pages load without script errors or page overflow', as
  }
 });
 
+test('package upgrades refresh an existing session menu', async ({ page }) => {
+ await page.goto('/');
+ await ready(page);
+ await page.evaluate(async () => {
+  const session = await L.require('session');
+  const menu = session.getLocalData('menu');
+  const status = menu.children.admin.children.status.children;
+  status.aeris = status.mono;
+  delete status.mono;
+  session.setLocalData('menu', menu);
+  session.setLocalData('mono-menu-version', 'previous-package-version');
+ });
+ await page.reload();
+ await ready(page);
+ await expect(page.locator('#mono-navigation a[href="/cgi-bin/luci/admin/status/mono"]')).toHaveCount(1);
+ await expect(page.locator('#mono-navigation a[href="/cgi-bin/luci/admin/status/aeris"]')).toHaveCount(0);
+});
+
 test('menu search filters native routes and restores the active group', async ({ page }, info) => {
  await page.goto('/');
  await ready(page);

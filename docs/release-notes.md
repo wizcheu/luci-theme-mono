@@ -1,6 +1,8 @@
-## Mono 1.0.0
+## Mono 1.0.1
 
 基于 shadcn/ui Neutral 设计规范重新构建的原生 LuCI 主题。
+
+1.0.1 修复了升级后旧浏览器会话保留菜单缓存的问题，新版网络概览入口无需退出重新登录即可出现。同时安装 Aeris 时，Mono 导航使用自己的概览入口。
 
 - 黑白配色、浅色 / 深色外观、统一导航、表单、表格、选择器与弹窗。
 - 可收起侧栏、菜单搜索、键盘快捷键及手机抽屉导航。
@@ -11,15 +13,15 @@
 
 ### 下载与安装
 
-适用于采用 **ucode LuCI + opkg** 的 OpenWrt，依赖 `luci-base` 和 `rpcd-mod-luci`。下载 `luci-theme-mono_1.0.0-1_all.ipk`，核对 `SHA256SUMS` 后上传至路由器：
+适用于采用 **ucode LuCI + opkg** 的 OpenWrt，依赖 `luci-base` 和 `rpcd-mod-luci`。下载 `luci-theme-mono_1.0.1-1_all.ipk`，核对 `SHA256SUMS` 后上传至路由器：
 
 ```sh
-opkg install /tmp/luci-theme-mono_1.0.0-1_all.ipk
+opkg install /tmp/luci-theme-mono_1.0.1-1_all.ipk
 uci set luci.main.mediaurlbase='/luci-static/mono'
 uci commit luci
 ```
 
-刷新浏览器即可，无需重启设备。其他主题会保留，也可以通过 LuCI 的“语言和界面”切换。旧会话没有显示新概览菜单时，退出后重新登录。
+刷新浏览器即可，无需重启设备。其他主题会保留，也可以通过 LuCI 的“语言和界面”切换。升级后的菜单缓存会在首次加载时自动刷新。
 
 附带 `manifest.json`（逐文件 SHA-256）和源码压缩包。此 Release 提供 IPK；使用 APK 的固件需通过对应 OpenWrt SDK 构建。
 

@@ -1,10 +1,18 @@
 'use strict';
 'require baseclass';
 'require ui';
+'require session';
 
 return baseclass.extend({
  __init__: function() {
-  return ui.menu.load().then(this.render.bind(this)).catch(function(error) {
+  // LuCI keeps the menu in the authenticated browser session across upgrades.
+  // Its resource version changes when opkg updates the installed package list.
+  var version = L.env.resource_version || 'mono-1.0.1';
+  if (session.getLocalData('mono-menu-version') !== version) ui.menu.flushCache();
+  return ui.menu.load().then(function(tree) {
+   session.setLocalData('mono-menu-version', version);
+   return this.render(tree);
+  }.bind(this)).catch(function(error) {
    var target = document.getElementById('mono-navigation');
    if (target) target.replaceChildren(E('p', { 'class': 'mono-menu-empty' }, error.message || String(error)), E('button', { 'class': 'btn', 'type': 'button', 'click': function() { location.reload(); } }, _('Reload')));
   });
@@ -38,7 +46,11 @@ return baseclass.extend({
   groups.forEach(function(group) {
    var children = ui.menu.getChildren(group);
    // Keep the overview first even when LuCI still has a previous menu cached.
-   if (group.name === 'status') children.sort(function(a, b) { return (b.name === 'mono') - (a.name === 'mono'); });
+   if (group.name === 'status') {
+    // Both themes may remain installed; use this theme's dashboard and controls.
+    if (children.some(function(child) { return child.name === 'mono'; })) children = children.filter(function(child) { return child.name !== 'aeris'; });
+    children.sort(function(a, b) { return (b.name === 'mono') - (a.name === 'mono'); });
+   }
    var selected = L.env.dispatchpath[1] === group.name;
    var path = activeMode.name + '/' + group.name;
    if (!children.length) {
