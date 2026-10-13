@@ -6,7 +6,7 @@
 
 白色主界面、浅灰侧栏、细边框、黑色主按钮、自然留白。支持本地浅色 / 深色切换、可收起侧栏、菜单搜索和手机抽屉导航。运行时仅使用 LuCI、CSS 和原生 JavaScript，无 React、外部字体或 CDN 请求。
 
-![Mono 浅色主题，本地演示页面](docs/preview-light.png)
+![Mono 浅色主题，本地预览](docs/preview-light.png)
 
 ## 兼容范围
 
@@ -20,12 +20,21 @@
 ## 本地预览
 
 ```sh
-python3 scripts/preview.py
+npm run preview
+# 或 python3 scripts/mirror.py --port 8101
 ```
 
-打开 <http://127.0.0.1:8098>。可查看概览、系统表单、接口表格、提示框、弹窗和登录页；切换深色模式，或缩窄窗口查看手机布局。
+打开 <http://127.0.0.1:8101>。已迁入 Aeris 的 **50 个脱敏原生 LuCI 页面**，包括网络、无线、DHCP、DNS、防火墙、系统、日志、软件包和 OpenClash；另有组件规范与登录页。
 
-预览使用演示数据，不连接路由器。页面外壳由实际 ucode 模板生成，样式和菜单脚本与安装包共用；表单行为由本地适配器演示，不能证明真实固件上的保存 / 应用或登录已实测。`preview/`、测试和 npm 依赖不会进入安装包。
+- 主界面采用 shadcn/ui Neutral 的语义变量、36px 控件、32px 小号按钮、6px 控件圆角、10px 卡片圆角和灰底标签页。
+- 支持深浅色切换、菜单搜索、`⌘K` / `Ctrl+K` 聚焦搜索和移动端抽屉。
+- 可编辑原生表单、打开接口弹窗、模拟保存与应用。底部「重置示例」恢复全部样本。
+- 系统与设备数据来自已脱敏的快照。概览流量采用 Aeris 的演示曲线，标记为示例流量；不是实机实时状态。
+- 预览只监听 `127.0.0.1`，所有写操作仅作用于进程内存，不连接路由器。
+
+生产主题仍使用原生 LuCI / ucode。shadcn/ui 的设计规范通过 CSS 和原生控件适配实现，没有引入 React 运行时。样式、控件与概览渲染器和 IPK 共用，`preview/`、模拟后端及上游快照不会进入安装包。
+
+详细说明和修改入口见 [预览开发说明](docs/preview-development.md)。旧设计样板可用 `npm run preview:legacy` 在 8102 端口打开。
 
 ## 构建安装包
 
@@ -37,7 +46,7 @@ python3 scripts/build.py
 
 输出到 `dist/`：
 
-- `luci-theme-mono_0.1.0-4_all.ipk`
+- `luci-theme-mono_1.0.0-1_all.ipk`
 - `SHA256SUMS`
 - `manifest.json`：包哈希及每个安装文件的哈希
 
@@ -48,7 +57,7 @@ python3 scripts/build.py
 将 IPK 上传至路由器 `/tmp/`，然后执行：
 
 ```sh
-opkg install /tmp/luci-theme-mono_0.1.0-4_all.ipk
+opkg install /tmp/luci-theme-mono_1.0.0-1_all.ipk
 ```
 
 安装只注册主题，保持当前主题选择。进入 **系统 → 系统 → 语言和界面 → 主题 → Mono**，保存并应用，再刷新页面。
@@ -89,14 +98,14 @@ make package/luci-theme-mono/compile V=s
 
 - 普通 push / PR / 手动触发：模板检查、安装包测试、桌面与手机浏览器测试，上传 IPK、源码包、校验和及预览截图到 Actions Artifacts。
 - 推送 `v*` 标签：全部检查通过后自动创建 GitHub Release 并上传制品。
-- 发布前更新 `Makefile` 中 `PKG_VERSION` / `PKG_RELEASE`，并同步 `package.json` 的版本。主题 CSS 顶部版本仅为说明。
+- 发布前更新 `Makefile` 中 `PKG_VERSION` / `PKG_RELEASE`，并同步 `package.json` 的版本。同步更新 `package-lock.json` 和 `docs/release-notes.md`。
 
 首次发布示例：
 
 ```sh
 git push -u origin main
-git tag v0.1.0
-git push origin v0.1.0
+git tag v1.0.0
+git push origin v1.0.0
 ```
 
 ## 开发与验证
@@ -140,4 +149,4 @@ Apache-2.0，详见 [LICENSE](LICENSE) 和 [NOTICE](NOTICE)。
 - 视觉参考：[shadcn/ui dashboard](https://ui.shadcn.com/view/new-york-v4/dashboard-01)
 - 原生兼容样式与模板约定：[LuCI Bootstrap](https://github.com/coolsnowwolf/luci/tree/0a19762/themes/luci-theme-bootstrap)
 
-`compat.css` 保留上游原始许可，主题覆盖集中在 `mono.css`，便于后续更新上游控件支持。
+`compat.css` 保留上游原始许可，最终视觉规范集中在 `shadcn.css`，便于后续更新上游控件支持。

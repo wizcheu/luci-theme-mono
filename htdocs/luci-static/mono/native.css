@@ -1,0 +1,293 @@
+/* Native LuCI compatibility. Keep upstream fields, handlers and RPC intact. */
+:root {
+ --mono-select-arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+:root[data-darkmode="true"] {
+ --mono-select-arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bdc6d5' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+/* The header shows authenticated data only; polling remains the native toggle. */
+.mono-user { font-size:13px; font-weight:600; }
+.mono-user > svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; }
+.mono[data-page="admin-status-channel_analysis"] .cbi-title-section { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
+.mono[data-page="admin-status-channel_analysis"] .cbi-title-field { margin:0; }
+.mono[data-page="admin-status-channel_analysis"] .cbi-title-buttons .spinning > .mono-native-action-icon { display:none; }
+.mono-topbar #indicators > [data-indicator="poll-status"] { padding-inline:14px; color:var(--mono-muted); background:var(--mono-subtle); border:1px solid var(--mono-border); }
+.mono-topbar #indicators > [data-indicator="poll-status"]::before { content:''; width:6px; height:6px; margin-right:8px; border-radius:50%; background:var(--mono-green); }
+.mono-topbar #indicators > [data-indicator="poll-status"][data-style="inactive"]::before { background:var(--mono-muted); }
+.mono-topbar #indicators > [data-indicator="poll-status"]:hover { color:var(--mono-foreground); background:var(--mono-hover); }
+/* One action family: primary apply, outlined save, plain reset; no mixed icons. */
+.mono .cbi-page-actions { gap:12px; padding-top:24px; }
+.mono .cbi-page-actions::after { display:none; }
+.mono .cbi-page-actions .cbi-button { min-width:88px; min-height:40px; height:40px; padding:8px 20px; text-align:center; font-weight:600; background-image:none; }
+.mono .cbi-page-actions .cbi-button > .mono-native-action-icon { display:none; }
+.mono .cbi-page-actions .cbi-button-save { color:var(--mono-foreground); border:1px solid var(--mono-control-border); background:var(--mono-background); }
+.mono .cbi-page-actions .cbi-button-save:hover { background:var(--mono-subtle); border-color:var(--mono-control-hover)!important; }
+.mono .cbi-page-actions .cbi-button-apply { color:#fff; background:var(--mono-primary); border-color:transparent; }
+.mono .cbi-page-actions .cbi-button-reset { color:var(--mono-foreground); background:transparent; border-color:transparent; }
+.mono .cbi-page-actions .cbi-button-reset:hover { background:var(--mono-subtle); }
+.mono .cbi-page-actions .cbi-dropdown.cbi-button-apply { min-width:184px; gap:0; }
+.mono .cbi-page-actions .cbi-dropdown.cbi-button-apply > ul:not(.dropdown) { flex:1; width:100%; margin:0!important; padding:0 42px; justify-content:center; }
+.mono .cbi-page-actions .cbi-dropdown.cbi-button-apply > ul:not(.dropdown) > li { padding:0; text-align:center; line-height:38px; }
+.mono .cbi-page-actions .cbi-dropdown.cbi-button-apply > .open { position:absolute; inset:0 0 0 auto; width:38px; margin:0; border-left:1px solid #ffffff40; background:none; }
+.mono .cbi-page-actions .cbi-dropdown.cbi-button-apply > .open::after { content:''; width:6px; height:6px; margin:auto; border:solid currentColor; border-width:0 1.8px 1.8px 0; transform:translateY(-2px) rotate(45deg); }
+.mono .cbi-page-actions .cbi-dropdown.cbi-button-apply > ul.dropdown { left:auto; right:0; min-width:100%; text-align:left; }
+/* Radio details and SSID details have separate, evenly spaced reading areas. */
+.mono .mono-wireless-card .ifacebox-body { padding:20px; }
+.mono .mono-wireless-card .ifacebox-body > span { display:grid; gap:8px; }
+.mono .mono-wireless-card .ifacebox-body > span > br,.mono .mono-wireless-card .ifacebadge > span > br { display:none; }
+.mono .mono-wireless-card .nowrap { display:flex; align-items:baseline; gap:12px; white-space:normal; overflow-wrap:anywhere; line-height:1.65; }
+.mono .mono-wireless-card .nowrap > strong { flex:0 0 76px; color:var(--mono-muted); font-size:13px; font-weight:500; }
+.mono .mono-wireless-card .ifacebox-body > div { display:grid; gap:12px; margin-top:20px; }
+.mono .mono-wireless-card .ifacebadge { display:grid; grid-template-columns:20px minmax(0,1fr); align-items:start; gap:12px; margin:0; padding:16px; border:0; border-radius:12px; background:var(--mono-subtle); font-size:13px; line-height:1.65; }
+.mono .mono-wireless-card .ifacebadge > svg { margin-top:2px; color:var(--mono-accent); }
+.mono .mono-wireless-card .ifacebadge > span { display:grid; gap:8px; min-width:0; }
+.mono .mono-wireless-card .ifacebadge .nowrap > strong { flex-basis:56px; }
+/* nftables injects a 0.25em !important cell rule; override it deliberately. */
+.mono .nft-table { margin:0 0 40px; }
+.mono .nft-table > h3 { margin:0 0 24px; font-size:20px; line-height:28px; }
+.mono .nft-chains { display:grid; gap:24px; }
+.mono .nft-chain { min-width:0; padding:24px; border:1px solid var(--mono-border); border-radius:16px; background:var(--mono-background); }
+.mono .nft-chain > h4 { margin:0 0 16px; font-size:16px; font-weight:700; line-height:24px; scroll-margin-top:100px; }
+.mono .nft-chain-hook { padding:12px 16px; margin:0 0 24px; background:var(--mono-subtle); border-radius:12px; color:var(--mono-muted); font-size:13px; line-height:1.8; }
+.mono .nft-chain-hook > ul { display:grid; gap:4px; list-style:none; margin:0; padding:0; }
+.mono .nft-rules { table-layout:fixed; }
+.mono .nft-rules tr > td { padding:14px 12px!important; vertical-align:top; font-weight:400; }
+.mono .nft-rules tr > th { padding:12px; background:var(--mono-subtle); }
+.mono .nft-rules .ifacebadge { max-width:100%; margin:3px 4px 3px 0; padding:4px 8px; border:0; border-radius:6px; background:var(--mono-subtle); font-size:12px; line-height:1.8; font-weight:400; white-space:normal; overflow-wrap:anywhere; }
+.mono .nft-rules .ifacebadge :is(var,em) { font-style:normal; }
+.mono .nft-rules .ifacebadge strong { font-weight:600; }
+.mono .nft-rules .nft-counter,.mono .nft-rules .nft-comment { color:var(--mono-muted); background:transparent; }
+.mono .nft-rules .nft-set-items,.mono .nft-rules .nft-list-items { max-width:100%; }
+@media(max-width:600px) {
+ .mono .cbi-page-actions .cbi-dropdown.cbi-button-apply { min-width:160px; }
+ .mono .cbi-page-actions .cbi-button { min-width:72px; padding-inline:14px; }
+ .mono .nft-chain { padding:16px 12px; }
+ .mono .nft-rules tr > td { padding:12px 6px!important; }
+ .mono .nft-chain-hook { padding:12px; }
+ .mono .mono-wireless-card .ifacebox-body { padding:16px; }
+ .mono .mono-wireless-card .ifacebadge { padding:14px 12px; gap:8px; }
+}
+/* Preserve panel width for upstream chart measurement, but remove ALL height.
+   opacity/height alone leaves each card's padding, borders and margins behind. */
+.mono [data-tab-title]:not([data-tab-active="true"]) {
+ height:0!important; min-height:0!important; padding-block:0!important;
+ margin-block:0!important; border-block-width:0!important;
+ visibility:hidden; overflow:hidden; pointer-events:none;
+}
+.mono select:not([multiple]) {
+ appearance:none; -webkit-appearance:none; padding-right:44px;
+ background-image:var(--mono-select-arrow); background-position:right 14px center;
+ background-size:18px 18px; background-repeat:no-repeat;
+}
+.mono :is(input:not([type="checkbox"],[type="radio"],[type="button"],[type="submit"],[type="range"]),textarea,select,.cbi-dropdown:not(.cbi-button)):hover:not(:disabled):not(:focus) {
+ border-color:var(--mono-control-hover);
+}
+.mono textarea { font-weight:450; }
+.mono .cbi-value-field > div:has(> select) { width:min(100%,28rem); }
+.mono .cbi-value-field > div > select { width:100%; }
+.mono .cbi-value-field > div:has(> input.cbi-input-text):not(.control-group) { width:min(100%,28rem); }
+.mono .cbi-value-field > div > input.cbi-input-text { width:100%; }
+.mono .mono-form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px 32px; align-items:start; }
+.mono .mono-form-grid > .cbi-value { margin:0; }
+.mono .mono-form-grid > .cbi-value:has(textarea,.cbi-dynlist,#localtime) { grid-column:1/-1; }
+.mono .mono-form-grid .cbi-value-field > div:has(> :is(input.cbi-input-text,select,.cbi-dropdown)):not(.control-group) { width:100%; }
+.mono .cbi-value-field:has(#localtime) { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.mono .cbi-value-field:has(#localtime) > p { margin:0; }
+.mono .cbi-value-field:has(#localtime) .control-group { display:flex; flex-wrap:wrap; gap:10px; }
+.mono .cbi-value-field:has(#localtime) .cbi-button { height:48px; min-height:48px; margin:0; }
+.mono .cbi-dropdown > .open {
+ flex:0 0 42px; width:42px; padding:0; font-size:0;
+ background:var(--mono-select-arrow) center / 18px no-repeat;
+}
+.mono .cbi-dropdown > .open > :is(svg,.ae-icon) { visibility:hidden; }
+.mono .cbi-dropdown.cbi-button > .open { margin-left:8px; border-left-color:color-mix(in srgb,currentColor 25%,transparent); }
+.mono .cbi-dropdown[open] > ul.dropdown { max-width:min(38rem,calc(100vw - 40px)); }
+.mono .cbi-dropdown[open] > ul.dropdown > li { white-space:normal; overflow-wrap:anywhere; }
+.mono .cbi-dropdown:not(.btn):not(.cbi-button) > ul:not(.dropdown) > li { padding-right:0; }
+.mono .control-group { align-items:center; }
+.mono .cbi-value-field > .control-group { gap:10px; }
+.mono .cbi-section-create { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:24px 0 0; padding:0; }
+.mono .cbi-section-create:empty { display:none; }
+.mono .cbi-section-create > * { flex:0 1 auto; margin:0; }
+.mono .cbi-section-node + .cbi-section-create { margin-top:24px; }
+.mono .cbi-value-description { max-width:80ch; }
+.mono .table .tr:hover > :is(.td,.th),.mono .au-table tbody tr:hover { background:var(--mono-table-hover); }
+.mono .table .tr > :is(.td,.th) { transition:background-color .15s; }
+.mono .table .td.cbi-section-actions > div { gap:6px; align-items:center; justify-content:flex-end; }
+.mono .table .td.cbi-section-actions .cbi-button { flex:0 0 auto; margin:0; }
+/* Isolated menu search: visible boundary, icon, clear button, no login autofill. */
+.mono-nav-search { padding-bottom:24px; }
+.mono-menu-search-form { position:relative; margin:0; }
+.mono .mono-nav-search input[type="search"] { padding:8px 36px; height:44px; min-height:44px; font-size:13px; font-weight:450; color:var(--mono-foreground); }
+.mono-menu-search-form > svg { position:absolute; left:12px; top:13px; width:18px; height:18px; z-index:1; fill:none; stroke:var(--mono-muted); stroke-width:1.8; stroke-linecap:round; }
+.mono-menu-search-form > button { position:absolute; top:7px; right:6px; width:30px; height:30px; padding:6px; border:0; border-radius:8px; background:transparent; color:var(--mono-muted); cursor:pointer; }
+.mono-menu-search-form > button:hover { background:var(--mono-hover); color:var(--mono-foreground); }
+.mono-menu-search-form > button svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; }
+#mono-menu-search::-webkit-search-cancel-button { appearance:none; }
+#mono-menu-search:-webkit-autofill { animation-name:mono-search-autofill!important; animation-duration:.01s!important; }
+@keyframes mono-search-autofill { from { opacity:.99; } to { opacity:1; } }
+/* Labels and actions of the upstream LogreadBox, with original inputs retained. */
+.mono-log-filters { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 24px; margin:24px 0; padding:24px; border:1px solid var(--mono-border); border-radius:16px; background:var(--mono-background); }
+.mono-log-filter { display:flex; flex-direction:column; gap:10px; min-width:0; }
+.mono-log-filter-heading { display:flex; justify-content:space-between; align-items:center; gap:16px; min-height:22px; }
+.mono-log-filter-heading > label { margin:0!important; font-size:13px; font-weight:600; color:var(--mono-muted); }
+.mono-log-filter-heading > .mono-log-invert { display:flex; align-items:center; gap:8px; font-weight:450; }
+.mono-log-sort { display:flex; align-items:center; gap:10px; grid-column:1/-1; font-size:13px; color:var(--mono-muted); }
+.mono .mono-log-filter > :is(input,select) { width:100%; margin:0!important; min-width:0; }
+.mono #content_syslog > .cbi-section-descr:empty { display:none; }
+.mono-log-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:0 0 20px!important; }
+.mono-log-actions .cbi-button { margin:0; }
+.mono #syslog { width:100%; min-height:320px; height:60vh; max-height:720px; padding:18px 20px; font-family:var(--font-mono); font-size:12px; font-weight:450; line-height:1.8; color:var(--mono-foreground); background:var(--mono-background); }
+.mono[data-page^="admin-system-crontab"] textarea,.mono[data-page^="admin-system-startup"] textarea { width:100%; height:clamp(320px,58vh,640px); padding:20px; font:13px/1.8 var(--font-mono); background:var(--mono-background); }
+.mono-native-tab-icon { width:18px; height:18px; flex:0 0 18px; }
+.mono :is(.tabs,.cbi-tabmenu) > li > a:has(> .mono-native-tab-icon) { display:flex; align-items:center; gap:8px; }
+.mono .cbi-button > .mono-native-action-icon { width:17px; height:17px; flex:0 0 17px; }
+.mono img.mono-original-device-icon { display:none!important; }
+.mono-native-device-icon { display:inline-block; width:20px; height:20px; flex:0 0 20px; color:var(--mono-muted); vertical-align:-4px; }
+.mono-native-device-icon.is-inactive { opacity:.4; }
+.mono .drag-handle > svg { pointer-events:none; stroke-width:3; }
+/* Keep the plugin's controls and theme switch; align its spacing and surfaces. */
+.mono .oc {
+ --radius-sm:8px; --radius-md:10px; --radius-lg:14px;
+ --control-height:36px; --control-row-height:36px; --icon-btn-size:32px;
+ --card-outer-padding:16px; --card-grid-gap:12px; --section-gap:16px;
+ --card-padding-block:12px; --card-padding:12px 14px;
+ --shadow-sm:none; --shadow-md:0 4px 18px #00000008;
+}
+.mono .oc .announcement-banner { background:var(--primary-color); box-shadow:none; }
+.mono .oc .main-card { border-color:var(--border-light); }
+.mono .oc .sub-card { border-color:var(--border-light); }
+.mono .oc .mode-row .mode-tab { white-space:nowrap; }
+.mono .oc .stats-card-header { margin-bottom:12px; }
+.mono[data-page^="admin-services-openclash"] table.cbi-section-table { display:block; width:100%; max-width:100%; overflow-x:auto; }
+@media(max-width:600px) {
+ .mono[data-page^="admin-services-openclash"] .cbi-value > :is(.cbi-value-title,.cbi-value-field) { width:100%; max-width:100%; }
+}
+/* The original interface table becomes a responsive set of cards. Existing
+   row IDs, information nodes, tooltips and buttons still belong to LuCI. */
+.mono .mono-interface-cards { padding:0; border:0; background:transparent; }
+.mono .mono-interface-cards > .table { display:block; overflow:visible; }
+.mono .mono-interface-cards > .table > tbody { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.mono .mono-interface-cards > .table > tbody > .tr {
+ display:flex; flex-direction:column; align-items:stretch; gap:20px;
+ min-width:0; padding:24px; border:1px solid var(--mono-border); border-radius:16px;
+ background:var(--mono-background); transition:border-color .16s;
+}
+.mono .mono-interface-cards > .table > tbody > .tr:hover { border-color:var(--mono-control-hover); }
+.mono .mono-interface-cards > .table > tbody > .tr > .td { display:block; flex:0 0 auto; width:100%!important; min-width:0!important; padding:0; border:0; background:transparent!important; text-align:left; }
+.mono .mono-interface-cards .ifacebox { display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:16px; width:100%; min-width:0; margin:0; border:0; border-radius:0; overflow:visible; text-align:left; }
+.mono .mono-interface-cards .ifacebox-head { padding:0; border:0; background:transparent!important; color:var(--mono-foreground); font-size:18px; white-space:nowrap; text-shadow:none; }
+.mono .mono-interface-cards .ifacebox-head strong { font-weight:700; }
+.mono .mono-interface-cards .ifacebox-head strong::before { content:''; display:inline-block; width:9px; height:9px; margin-right:9px; border-radius:50%; background:color-mix(in srgb,rgb(var(--zone-color-rgb,80,120,235)) 70%,var(--mono-foreground)); vertical-align:1px; }
+.mono .mono-interface-cards .ifacebox-body { min-width:0; padding:0; font-size:12px; line-height:1.8; text-align:right; color:var(--mono-muted); }
+.mono .mono-interface-cards .ifacebox-body .mono-native-device-icon { width:16px; height:16px; }
+.mono .mono-interface-cards [id$="-ifc-description"] { display:grid; gap:8px; font-size:13px; }
+.mono .mono-interface-cards [id$="-ifc-description"] > br { display:none; }
+.mono .mono-interface-cards [id$="-ifc-description"] > .nowrap { display:grid; grid-template-columns:92px minmax(0,1fr); gap:12px; white-space:normal; overflow-wrap:anywhere; }
+.mono .mono-interface-cards [id$="-ifc-description"] strong { color:var(--mono-muted); font-size:12px; font-weight:500; }
+.mono .mono-interface-cards .td.cbi-section-actions { margin-top:auto; padding-top:18px!important; border-top:1px solid var(--mono-border)!important; }
+.mono .mono-interface-cards .td.cbi-section-actions > div { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:8px; }
+.mono .mono-interface-cards .td.cbi-section-actions .cbi-button { font-size:12px; padding:8px 12px; }
+@media(max-width:1200px) { .mono .mono-interface-cards > .table > tbody { grid-template-columns:1fr; } }
+@media(max-width:600px) {
+ .mono .mono-interface-cards > .table > tbody > .tr { padding:20px; gap:18px; }
+ .mono .mono-interface-cards .ifacebox { align-items:flex-start; flex-direction:column; gap:10px; }
+ .mono .mono-interface-cards .ifacebox-body { text-align:left; }
+ .mono .mono-interface-cards [id$="-ifc-description"] > .nowrap { grid-template-columns:72px minmax(0,1fr); gap:8px; }
+}
+@media(max-width:900px) {
+ .mono .mono-form-grid { grid-template-columns:minmax(0,1fr); gap:24px; }
+ .mono .cbi-value-field > div:has(> input.cbi-input-text):not(.control-group),.mono .cbi-value-field > div:has(> select) { width:100%; }
+}
+.mono .mono-native-graph { border:1px solid var(--mono-border)!important; border-radius:12px; overflow:hidden; background:var(--mono-background)!important; }
+.mono .mono-native-graph svg { display:block; }
+.mono #view .mono-native-graph svg line[style] { stroke:var(--mono-border)!important; stroke-width:1!important; stroke-dasharray:3 4; }
+.mono .mono-native-graph svg text { fill:var(--mono-muted)!important; font-family:var(--font-sans)!important; font-size:11px!important; text-shadow:none!important; }
+.mono .mono-native-graph svg polyline { fill-opacity:.10!important; stroke-width:1.8!important; stroke:var(--mono-primary)!important; fill:var(--mono-primary)!important; }
+.mono .mono-native-graph svg polyline:nth-of-type(2) { stroke:#10a88a!important; fill:#10a88a!important; }
+.mono .mono-native-graph svg polyline:nth-of-type(3) { stroke:var(--mono-purple)!important; fill:var(--mono-purple)!important; }
+.mono .mono-native-graph svg #rx { stroke:var(--mono-primary)!important; fill:var(--mono-primary)!important; fill-opacity:.10!important; stroke-width:1.8!important; }
+.mono .mono-native-graph svg #tx { stroke:#10a88a!important; fill:#10a88a!important; fill-opacity:.10!important; stroke-width:1.8!important; }
+.mono .mono-native-graph + .right { margin:10px 0 20px; color:var(--mono-muted); font-size:12px; }
+.mono .mono-native-graph + .right + br { display:none; }
+.mono .mono-bandwidth-table { border:1px solid var(--mono-border); border-collapse:separate; border-radius:12px; overflow:hidden; }
+.mono .mono-bandwidth-table .th { text-align:right; background:var(--mono-control); }
+.mono .mono-bandwidth-table .th:first-child { text-align:left; }
+.mono .mono-bandwidth-table .td:not(:first-child) { text-align:right; }
+.mono .mono-bandwidth-direction { white-space:nowrap; }
+.mono .mono-bandwidth-direction svg { width:18px; height:18px; margin-right:8px; vertical-align:-4px; color:var(--mono-primary); }
+.mono [data-direction="tx"] .mono-bandwidth-direction svg { color:#10a88a; }
+.mono .cbi-button:is(.cbi-button-up,.cbi-button-down) { width:36px!important; min-width:36px; height:36px; min-height:36px; padding:8px!important; font-size:0!important; background-image:var(--mono-select-arrow); background-repeat:no-repeat; background-position:center; background-size:18px; }
+.mono .cbi-button-up { transform:rotate(180deg); }
+.mono .cbi-button-up:active:not(:disabled) { transform:rotate(180deg) scale(.96); }
+.mono .cbi-button:is(.cbi-button-up,.cbi-button-down):is(:hover,:focus) { background-image:var(--mono-select-arrow); background-repeat:no-repeat; background-position:center; background-size:18px; }
+.mono .mono-sort-actions { min-width:92px; white-space:nowrap; text-align:center; }
+.mono .mono-sort-actions .cbi-button { margin:2px; vertical-align:middle; }
+.mono th[data-sort-direction]::after { content:''; display:inline-block; width:14px; height:14px; margin-left:6px; vertical-align:middle; background:var(--mono-select-arrow) center / contain no-repeat; }
+.mono th[data-sort-direction="asc"]::after { transform:rotate(180deg); }
+@media(max-width:600px) {
+ .mono-log-filters { grid-template-columns:1fr; padding:20px; gap:20px; }
+ .mono .cbi-section-create { margin-top:20px; }
+ .mono .control-group:has(> :is(input,select)) { max-width:100%; }
+}
+/* Native controls share the same implementation as the preview catalogue. */
+.mono select.mono-native-select-source { display:none!important; }
+.mono .mono-select { min-width:0; }
+.mono .mono-select-trigger { width:100%; margin:0; }
+.mono .mono-select-trigger:focus-visible,.mono .mono-select-trigger[aria-expanded="true"] { border-color:var(--mono-primary); }
+.mono .cbi-input-invalid + .mono-select .mono-select-trigger { border-color:var(--mono-danger)!important; }
+.mono .cbi-dropdown[open] > ul.dropdown { padding:6px; border-radius:12px; box-shadow:0 10px 30px #00000014; }
+.mono .cbi-dropdown[open] > ul.dropdown > li { min-height:42px; padding:10px 12px; border-radius:8px; font-size:14px; line-height:22px; }
+.mono .cbi-dropdown[open] > ul.dropdown > li[selected] { color:var(--mono-primary); }
+.mono .cbi-dropdown:not([multiple])[open] > ul.dropdown > li[selected] { padding-right:38px; position:relative; }
+.mono .cbi-dropdown:not([multiple])[open] > ul.dropdown > li[selected]::after { content:'✓'; position:absolute; right:12px; top:10px; font-size:16px; }
+.mono #localtime { margin:0; flex:0 1 300px; width:300px; }
+.mono .cbi-value-field:has(#localtime) .control-group { margin:0; }
+/* Keep the add glyph when a legacy focus rule changes the joined background. */
+.mono .cbi-dynlist > .add-item > .cbi-button-add { position:relative; flex:0 0 48px; width:48px; min-width:48px; padding:0; font-size:0!important; background-image:none!important; }
+.mono .cbi-dynlist > .add-item > .cbi-button-add::after { content:'+'; display:grid; place-items:center; position:absolute; inset:0; font-size:22px; font-weight:500; line-height:1; color:var(--mono-muted); }
+.mono .cbi-dynlist > .add-item > .cbi-button-add > svg { display:none; }
+.mono .alert-message :is(button,input[type="button"]):not([class*="cbi-button-"]) { min-height:40px; padding:8px 20px; border-radius:12px; border:1px solid var(--mono-border); background:var(--mono-background); color:var(--mono-foreground); font-size:14px; font-weight:600; }
+.mono .alert-message :is(button,input[type="button"]):not([class*="cbi-button-"]):hover { background:var(--mono-hover); }
+.mono .mono-form-grid > .cbi-tab-descr { grid-column:1/-1; margin:0; }
+/* Lease tables need their own full-width rows, including on narrow screens. */
+.mono [id="cbi-dhcp-__leases__"].cbi-section-node { display:flex; flex-direction:column; gap:32px; }
+.mono [id="cbi-dhcp-__leases__"].cbi-section-node > .cbi-value { width:100%; min-width:0; margin:0; }
+.mono [id="cbi-dhcp-__leases__"] .cbi-value-field { min-width:0; max-width:100%; }
+.mono [id="cbi-dhcp-__leases__"] table { display:block; max-width:100%; width:100%; overflow-x:auto; }
+.mono [id="cbi-dhcp-__leases__"] table :is(th,td) { white-space:nowrap; }
+.mono [id="cbi-dhcp-__leases__"] .cbi-section-descr { max-width:100ch; line-height:1.8; }
+.mono .mono-sort-actions { min-width:112px; }
+.mono .cbi-button:is(.cbi-button-up,.cbi-button-down) { width:40px!important; min-width:40px; height:40px; min-height:40px; border-radius:12px; }
+/* Package manager: full-width storage, paired fields, then a separate action row. */
+.mono[data-page="admin-system-package-manager"] #view > .controls:has(#disk-space-label) { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin:24px 0 32px; padding:24px; border:1px solid var(--mono-border); border-radius:16px; background:var(--mono-background); }
+.mono[data-page="admin-system-package-manager"] .controls:has(#disk-space-label) > div { display:flex; flex-direction:column; align-items:stretch; gap:10px; min-width:0; padding:0; white-space:normal; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#disk-space-label) > div:is(:first-child,:nth-child(4),:nth-child(5)) { grid-column:1/-1; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#disk-space-label) > div > * { flex:0 0 auto; align-self:stretch; min-width:0; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#disk-space-label) > div > label { color:var(--mono-muted); font-size:13px; font-weight:600; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#disk-space-label) .cbi-progressbar { width:100%; margin:24px 0 0; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#disk-space-label) .control-group { margin:0; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#action-label) > div:has(#action-label) .control-group { gap:12px; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#action-label) > div:has(#action-label) .btn { margin:0; min-height:40px; }
+.mono[data-page="admin-system-package-manager"] .controls:has(#disk-space-label) > div:last-child > div { display:flex; flex-wrap:wrap; align-items:center; gap:8px 20px; }
+.mono[data-page="admin-system-package-manager"] .controls label:has(input[type="radio"]) { display:inline-flex; align-items:center; gap:8px; margin:0; }
+.mono[data-page="admin-system-package-manager"] #view > .controls:has(.pager) { display:block; margin:20px 0; }
+.mono[data-page="admin-system-package-manager"] .controls > .pager { display:flex; align-items:center; justify-content:flex-end; gap:16px; padding:0; flex-wrap:nowrap; min-width:0; }
+.mono[data-page="admin-system-package-manager"] .controls > .pager > * { flex:0 0 auto; }
+.mono[data-page="admin-system-package-manager"] .controls > .pager > .btn { flex:0 0 40px; width:40px; min-height:40px; padding:8px; border-radius:12px; }
+.mono[data-page="admin-system-package-manager"] .pager > .text { color:var(--mono-muted); font-size:13px; }
+.mono[data-page="admin-system-package-manager"] #packages { border:1px solid var(--mono-border); border-radius:16px; background:var(--mono-background); overflow:hidden; }
+@media(max-width:700px) {
+ .mono[data-page="admin-system-package-manager"] #view > .controls:has(#disk-space-label) { grid-template-columns:minmax(0,1fr); padding:20px; }
+ .mono[data-page="admin-system-package-manager"] #packages { display:block; max-width:100%; overflow-x:auto; }
+}
+.mono .control-group > select.mono-native-select-source + .mono-select { flex:1; min-width:0; }
+.mono .control-group > .mono-select:has(~ :is(button,.cbi-button)) .mono-select-trigger { border-radius:12px 0 0 12px; }
+.mono .cbi-section-create > .mono-select { width:auto; flex:1 1 200px; max-width:28rem; }
+.mono[data-page^="admin-services-openclash"] table:has(.mono-sort-actions) .tr > :nth-child(4) { min-width:200px; }
+.mono[data-page^="admin-services-openclash"] table:has(.mono-sort-actions) .tr > :nth-child(5) { min-width:100px; }
+/* Status overview uses clickable labels for Hide/Show; the handler replaces
+   their class on each toggle, so style the stable semantic attributes. */
+.mono .cbi-title h3:has([data-clickable="true"]) { align-items:center; gap:16px; }
+.mono .cbi-title [data-clickable="true"] { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:8px 20px; border:1px solid var(--mono-border); border-radius:12px; background:var(--mono-background); color:var(--mono-foreground); font-size:14px; line-height:22px; font-weight:600; box-shadow:none; cursor:pointer; }
+.mono .cbi-title [data-clickable="true"]:hover { background:var(--mono-hover); }

@@ -1,0 +1,10 @@
+{
+ "luci-theme-mono": {
+  "description": "Read system, interface counters and IPv4 DHCP leases for the Mono dashboard",
+  "read": {"ubus": {
+   "system": ["board", "info"],
+   "network.interface": ["dump"],
+   "luci-rpc": ["getNetworkDevices", "getDHCPLeases"]
+  }}
+ }
+}

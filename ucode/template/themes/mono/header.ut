@@ -19,22 +19,39 @@
  <script src="{{ media }}/appearance.js"></script>
  <link rel="stylesheet" href="{{ media }}/compat.css">
  <link rel="stylesheet" href="{{ media }}/mono.css">
+ <link rel="stylesheet" href="{{ media }}/dashboard.css">
+ <link rel="stylesheet" href="{{ media }}/pages.css">
+ <link rel="stylesheet" href="{{ media }}/router-pages.css">
+ <link rel="stylesheet" href="{{ media }}/controls.css">
+ <script src="{{ media }}/controls.js"></script>
+ <link rel="stylesheet" href="{{ media }}/ui.css">
+ <script src="{{ media }}/ui.js"></script>
+ <link rel="stylesheet" href="{{ media }}/native.css">
+ <script defer src="{{ media }}/native.js"></script>
  <link rel="icon" href="{{ media }}/mark.svg" type="image/svg+xml">
  {% if (node?.css): %}<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">{% endif %}
  {% if (css): %}<style>{{ css }}</style>{% endif %}
  <script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
- <script src="{{ resource }}/cbi.js"></script>
+ {% if (!blank_page): %}<script src="{{ resource }}/cbi.js"></script>{% endif %}
  <script defer src="{{ media }}/shell.js"></script>
+ <link rel="stylesheet" href="{{ media }}/shadcn.css">
 </head>
 <body class="mono lang_{{ dispatcher.lang }}{{ blank_page ? ' mono-auth' : '' }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}">
 {% if (!blank_page): %}
  <a class="mono-skip" href="#maincontent">{{ _('Skip to content') }}</a>
  <aside id="mono-sidebar" class="mono-sidebar" aria-label="{{ _('Main menu') }}">
-  <a class="mono-brand" href="{{ dispatcher.build_url('admin') }}">
+  <a class="mono-brand" href="{{ dispatcher.build_url('admin/status/mono') }}">
    <span class="mono-mark" aria-hidden="true"></span>
-   <span><strong>{{ striptags(boardinfo.hostname ?? 'OpenWrt') }}</strong><small>OpenWrt · Mono</small></span>
+   <span><strong>Mono<span class="mono-brand-dot">.</span></strong><small>OpenWrt 管理控制台</small></span>
   </a>
-  <div class="mono-nav-search"><input id="mono-menu-search" type="search" placeholder="{{ _('Search') }}" aria-label="{{ _('Search') }}" autocomplete="off"></div>
+  <div class="mono-nav-search">
+   <form id="mono-menu-search-form" class="mono-menu-search-form" role="search" autocomplete="off">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+    <input id="mono-menu-search" name="mono-menu-query" type="search" placeholder="搜索菜单…" aria-label="搜索菜单" autocomplete="off" autocapitalize="none" spellcheck="false" data-lpignore="true" data-1p-ignore readonly>
+    <button id="mono-menu-search-clear" type="button" aria-label="清空菜单搜索" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+   </form>
+  </div>
+  <div class="mono-nav-caption">控制面板</div>
   <nav id="mono-navigation" aria-label="{{ _('Main menu') }}"><span class="mono-menu-loading">{{ _('Loading…') }}</span></nav>
   <div id="mono-menu-empty" class="mono-menu-empty" hidden>{{ _('No matching results') }}</div>
   <div class="mono-sidebar-foot"><span class="mono-device-label">{{ striptags(boardinfo.model ?? 'OpenWrt') }}</span><div id="modemenu" hidden></div></div>
@@ -45,7 +62,7 @@
    <button id="mono-sidebar-toggle" class="mono-icon-button" type="button" aria-label="{{ _('Toggle navigation') }}" aria-controls="mono-sidebar" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
    <span class="mono-topbar-divider" aria-hidden="true"></span>
    <nav id="mono-breadcrumb" class="mono-breadcrumb" aria-label="{{ _('Location') }}"><span>{{ dispatched?.title ? _(dispatched.title) : 'OpenWrt' }}</span></nav>
-   <div class="mono-topbar-actions"><div id="indicators"></div><button id="mono-appearance" class="mono-icon-button" type="button" aria-label="{{ _('Dark mode') }}" aria-pressed="false" title="{{ _('Dark mode') }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg></button></div>
+   <div class="mono-topbar-actions"><div id="indicators"></div><button id="mono-appearance" class="mono-icon-button" type="button" aria-label="{{ _('Dark mode') }}" aria-pressed="false" title="{{ _('Dark mode') }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg></button>{% if (ctx.authuser): %}<div class="mono-user" aria-label="{{ _('Username') }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span>{{ entityencode(ctx.authuser, true) }}</span></div>{% endif %}</div>
   </header>
   <main id="maincontent" class="container" tabindex="-1">
    {% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}

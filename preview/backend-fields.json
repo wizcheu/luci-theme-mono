@@ -1,0 +1,1455 @@
+{
+  "wireless": [],
+  "network-dns": [
+    {
+      "label": "DNS 重定向",
+      "panel": "常规",
+      "type": "checkbox"
+    },
+    {
+      "label": "本地解析这些项目",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "本地域名",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "扩展 HOSTS 文件",
+      "panel": "常规",
+      "type": "checkbox"
+    },
+    {
+      "label": "地址",
+      "panel": "常规",
+      "type": "list"
+    },
+    {
+      "label": "所有服务器",
+      "panel": "常规",
+      "type": "checkbox"
+    },
+    {
+      "label": "缓存 DNS 记录类型",
+      "options": [
+        "ANY",
+        "A",
+        "AAAA",
+        "ALIAS",
+        "CAA",
+        "CERT",
+        "CNAME",
+        "DS",
+        "HINFO",
+        "HIP",
+        "HTTPS",
+        "KEY",
+        "LOC",
+        "MX",
+        "NAPTR",
+        "NS",
+        "OPENPGPKEY",
+        "PTR",
+        "RP",
+        "SIG",
+        "SOA",
+        "SRV",
+        "SSHFP",
+        "SVCB",
+        "TLSA",
+        "TXT",
+        "URI",
+        ""
+      ],
+      "panel": "缓存",
+      "type": "select"
+    },
+    {
+      "label": "不监听通配符地址",
+      "panel": "设置及端口",
+      "type": "checkbox"
+    },
+    {
+      "label": "监听接口",
+      "options": [
+        "lan:",
+        "wan:",
+        "wan_6:",
+        "wan6: （接口未连接）-"
+      ],
+      "panel": "设置及端口",
+      "type": "select"
+    },
+    {
+      "label": "监听地址",
+      "options": [
+        "2408:8206:1850:4927:1d1b:3ba8:8b2a:60da pppoe-wan",
+        "2408:8207:1852:c4e0::1 br-lan",
+        "fd4c:15c1:5b09::1 br-lan",
+        "fe80::1d1b:3ba8:8b2a:60da pppoe-wan",
+        "fe80::cabf:4cff:fefb:4037 wan",
+        "fe80::d6da:21ff:feef:a458 eth0"
+      ],
+      "panel": "设置及端口",
+      "type": "select"
+    },
+    {
+      "label": "排除接口",
+      "options": [
+        "lan:",
+        "loopback:",
+        "wan:",
+        "wan_6:",
+        "wan6: （接口未连接）-"
+      ],
+      "panel": "设置及端口",
+      "type": "select"
+    },
+    {
+      "label": "DNS 服务器端口",
+      "panel": "设置及端口",
+      "type": "text"
+    },
+    {
+      "label": "DNS 查询端口",
+      "panel": "设置及端口",
+      "type": "text"
+    },
+    {
+      "label": "最小源端口 #",
+      "panel": "设置及端口",
+      "type": "text"
+    },
+    {
+      "label": "最大源端口 #",
+      "panel": "设置及端口",
+      "type": "text"
+    },
+    {
+      "label": "忽略空域名解析",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "重绑定保护",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "允许本机",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "域名白名单",
+      "panel": "过滤器",
+      "type": "list"
+    },
+    {
+      "label": "仅本地服务",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "过滤私有地址",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "过滤 SRV/SOA 服务发现",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "过滤 IPv6 AAAA 记录",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "过滤 IPv4 A 记录",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "过滤 DNS 资源记录",
+      "options": [
+        "ANY",
+        "A",
+        "AAAA",
+        "ALIAS",
+        "CAA",
+        "CERT",
+        "CNAME",
+        "DS",
+        "HINFO",
+        "HIP",
+        "HTTPS",
+        "KEY",
+        "LOC",
+        "MX",
+        "NAPTR",
+        "NS",
+        "OPENPGPKEY",
+        "PTR",
+        "RP",
+        "SIG",
+        "SOA",
+        "SRV",
+        "SSHFP",
+        "SVCB",
+        "TLSA",
+        "TXT",
+        "URI",
+        ""
+      ],
+      "panel": "过滤器",
+      "type": "select"
+    },
+    {
+      "label": "本地化查询",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "不缓存无效信息",
+      "panel": "过滤器",
+      "type": "checkbox"
+    },
+    {
+      "label": "IP 地址黑名单",
+      "panel": "过滤器",
+      "type": "list"
+    },
+    {
+      "label": "DNS 转发",
+      "panel": "转发",
+      "type": "list"
+    },
+    {
+      "label": "额外的 SERVERS 文件",
+      "panel": "转发",
+      "type": "text"
+    },
+    {
+      "label": "添加请求者 MAC 地址",
+      "options": [
+        "关",
+        "启用（默认）",
+        "base64",
+        "text",
+        ""
+      ],
+      "panel": "转发",
+      "type": "select"
+    },
+    {
+      "label": "在转发查询之前移除 MAC 地址",
+      "panel": "转发",
+      "type": "checkbox"
+    },
+    {
+      "label": "在转发请求时添加子网地址",
+      "panel": "转发",
+      "type": "text"
+    },
+    {
+      "label": "在转发查询之前移除子网地址",
+      "panel": "转发",
+      "type": "checkbox"
+    },
+    {
+      "label": "最大 EDNS0 数据包大小",
+      "panel": "限制",
+      "type": "text"
+    },
+    {
+      "label": "最大并发查询数",
+      "panel": "限制",
+      "type": "text"
+    },
+    {
+      "label": "DNS 查询缓存的大小",
+      "panel": "限制",
+      "type": "text"
+    },
+    {
+      "label": "最小缓存 TTL",
+      "panel": "限制",
+      "type": "text"
+    },
+    {
+      "label": "最大缓存 TTL",
+      "panel": "限制",
+      "type": "text"
+    },
+    {
+      "label": "记录查询日志",
+      "panel": "日志",
+      "type": "checkbox"
+    },
+    {
+      "label": "日志记录设施",
+      "options": [
+        "未指定",
+        "KERN",
+        "USER",
+        "MAIL",
+        "DAEMON",
+        "AUTH",
+        "LPR",
+        "NEWS",
+        "UUCP",
+        "CRON",
+        "LOCAL0",
+        "LOCAL1",
+        "LOCAL2",
+        "LOCAL3",
+        "LOCAL4",
+        "LOCAL5",
+        "LOCAL6",
+        "LOCAL7",
+        "stderr",
+        ""
+      ],
+      "panel": "日志",
+      "type": "select"
+    },
+    {
+      "label": "忽略解析文件",
+      "panel": "Resolv 和 Hosts 文件",
+      "type": "checkbox"
+    },
+    {
+      "label": "解析文件",
+      "panel": "Resolv 和 Hosts 文件",
+      "type": "text"
+    },
+    {
+      "label": "按顺序查询",
+      "panel": "Resolv 和 Hosts 文件",
+      "type": "checkbox"
+    },
+    {
+      "label": "忽略主机文件目录",
+      "panel": "Resolv 和 Hosts 文件",
+      "type": "checkbox"
+    },
+    {
+      "label": "忽略 /etc/hosts 文件",
+      "panel": "Resolv 和 Hosts 文件",
+      "type": "checkbox"
+    },
+    {
+      "label": "额外的 HOSTS 文件",
+      "panel": "Resolv 和 Hosts 文件",
+      "type": "list"
+    }
+  ],
+  "network-dhcp": [
+    {
+      "label": "唯一授权",
+      "panel": "常规",
+      "type": "checkbox"
+    },
+    {
+      "label": "本地域名",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "顺序分配 IP",
+      "panel": "常规",
+      "type": "checkbox"
+    },
+    {
+      "label": "最大 DHCP 租约数",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "本地解析地址",
+      "panel": "常规",
+      "type": "checkbox"
+    },
+    {
+      "label": "不监听通配符地址",
+      "panel": "设置及端口",
+      "type": "checkbox"
+    },
+    {
+      "label": "监听接口",
+      "options": [
+        "lan:",
+        "wan:",
+        "wan_6:",
+        "wan6: （接口未连接）-"
+      ],
+      "panel": "设置及端口",
+      "type": "select"
+    },
+    {
+      "label": "监听地址",
+      "options": [
+        "2408:8206:1850:4927:1d1b:3ba8:8b2a:60da pppoe-wan",
+        "2408:8207:1852:c4e0::1 br-lan",
+        "fd4c:15c1:5b09::1 br-lan",
+        "fe80::1d1b:3ba8:8b2a:60da pppoe-wan",
+        "fe80::cabf:4cff:fefb:4037 wan",
+        "fe80::d6da:21ff:feef:a458 eth0"
+      ],
+      "panel": "设置及端口",
+      "type": "select"
+    },
+    {
+      "label": "排除接口",
+      "options": [
+        "lan:",
+        "loopback:",
+        "wan:",
+        "wan_6:",
+        "wan6: （接口未连接）-"
+      ],
+      "panel": "设置及端口",
+      "type": "select"
+    },
+    {
+      "label": "额外 DHCP 记录",
+      "panel": "日志",
+      "type": "checkbox"
+    },
+    {
+      "label": "日志记录设施",
+      "options": [
+        "未指定",
+        "KERN",
+        "USER",
+        "MAIL",
+        "DAEMON",
+        "AUTH",
+        "LPR",
+        "NEWS",
+        "UUCP",
+        "CRON",
+        "LOCAL0",
+        "LOCAL1",
+        "LOCAL2",
+        "LOCAL3",
+        "LOCAL4",
+        "LOCAL5",
+        "LOCAL6",
+        "LOCAL7",
+        "stderr",
+        ""
+      ],
+      "panel": "日志",
+      "type": "select"
+    },
+    {
+      "label": "不记录日志",
+      "panel": "日志",
+      "type": "checkbox"
+    },
+    {
+      "label": "使用 /etc/ethers",
+      "panel": "文件",
+      "type": "checkbox"
+    },
+    {
+      "label": "租约文件",
+      "panel": "文件",
+      "type": "text"
+    },
+    {
+      "label": "启用 TFTP 服务器",
+      "panel": "PXE/TFTP",
+      "type": "checkbox"
+    },
+    {
+      "label": "TFTP 服务器根目录",
+      "panel": "PXE/TFTP",
+      "type": "text"
+    },
+    {
+      "label": "网络启动引导文件",
+      "panel": "PXE/TFTP",
+      "type": "text"
+    },
+    {
+      "label": "DHCPv4",
+      "panel": "常规",
+      "type": "checkbox"
+    },
+    {
+      "label": "租约文件",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "租约触发器",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "Hosts 文件",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "PIO 目录",
+      "panel": "常规",
+      "type": "text"
+    },
+    {
+      "label": "日志级别",
+      "options": [
+        "未指定",
+        "紧急 (Emergency)",
+        "警报 (Alert)",
+        "严重 (Critical)",
+        "错误 (Error)",
+        "警告 (Warning)",
+        "通知 (Notice)",
+        "信息 (Info)",
+        "调试 (Debug)",
+        ""
+      ],
+      "panel": "常规",
+      "type": "select"
+    }
+  ],
+  "network-turboacc": [
+    {
+      "label": "快速转发引擎",
+      "options": [
+        "禁用",
+        "Flow offloading"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "硬件流量卸载",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "桥接加速",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "IPv6 加速",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用以太网 HNAT",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用以太网 IPv6 HNAT",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "MTK 无线硬件加速",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "全锥形 NAT1",
+      "options": [
+        "禁用",
+        "兼容模式全锥形 NAT1",
+        "高性能 Broadcom 全锥形 NAT1"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "TCP 拥塞控制算法",
+      "options": [
+        "bbr",
+        "cubic",
+        "reno"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    }
+  ],
+  "services-upnp": [
+    {
+      "label": "启动服务",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用 UPnP IGD 协议",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用 PCP/NAT-PMP 协议",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "UPnP IGDv1 兼容模式",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "下行带宽",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "上行带宽",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "使用 STUN",
+      "panel": "高级设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "STUN 主机",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "STUN 端口",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "强制转发",
+      "panel": "高级设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用安全模式",
+      "panel": "高级设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "通知间隔",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "SOAP/HTTP 端口",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "服务网址",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "设备 UUID",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "通告的设备型号",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "通告的设备序列号",
+      "panel": "高级设置",
+      "type": "text"
+    },
+    {
+      "label": "用系统运行时间代替进程运行时间",
+      "panel": "高级设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用额外的日志",
+      "panel": "高级设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "服务租约文件",
+      "panel": "高级设置",
+      "type": "text"
+    }
+  ],
+  "services-ddns": [
+    {
+      "label": "动态 DNS 版本",
+      "panel": "信息",
+      "type": "text",
+      "skip": true
+    },
+    {
+      "label": "状态",
+      "panel": "信息",
+      "type": "text",
+      "skip": true
+    },
+    {
+      "label": "最近一次更新服务列表",
+      "panel": "信息",
+      "type": "text",
+      "skip": true
+    },
+    {
+      "label": "不支持使用 TCP 进行 DNS 解析",
+      "panel": "信息",
+      "type": "text"
+    },
+    {
+      "label": "允许非公网 IP",
+      "panel": "全局设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "日期格式",
+      "panel": "全局设置",
+      "type": "text"
+    },
+    {
+      "label": "状态目录",
+      "panel": "全局设置",
+      "type": "text"
+    },
+    {
+      "label": "日志目录",
+      "panel": "全局设置",
+      "type": "text"
+    },
+    {
+      "label": "日志长度",
+      "panel": "全局设置",
+      "type": "text"
+    },
+    {
+      "label": "使用 cURL",
+      "panel": "全局设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "CA 证书路径",
+      "panel": "全局设置",
+      "type": "text"
+    },
+    {
+      "label": "服务下载网址",
+      "panel": "全局设置",
+      "type": "text"
+    }
+  ],
+  "services-openclash-settings": [
+    {
+      "label": "运行模式",
+      "options": [
+        "Fake-IP（增强）模式",
+        "Fake-IP（TUN）模式",
+        "Fake-IP（TUN-混合）模式【UDP-TUN，TCP-转发】"
+      ],
+      "panel": "模式设置",
+      "type": "select"
+    },
+    {
+      "label": "UDP 流量转发",
+      "panel": "模式设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "代理模式",
+      "options": [
+        "Rule【策略代理】",
+        "Global【全局代理（需前往控制面板手动指定节点）】",
+        "Direct【全局直连】"
+      ],
+      "panel": "模式设置",
+      "type": "select"
+    },
+    {
+      "label": "延迟启动（秒）",
+      "panel": "模式设置",
+      "type": "text"
+    },
+    {
+      "label": "日志大小（KB）",
+      "panel": "模式设置",
+      "type": "text"
+    },
+    {
+      "label": "旁路网关（旁路由）兼容",
+      "panel": "模式设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "禁用 quic-go GSO 支持",
+      "panel": "模式设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "小闪存模式",
+      "panel": "模式设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "路由本机代理",
+      "panel": "流量控制",
+      "type": "checkbox"
+    },
+    {
+      "label": "禁用 QUIC",
+      "panel": "流量控制",
+      "type": "checkbox"
+    },
+    {
+      "label": "绕过服务器地址",
+      "panel": "流量控制",
+      "type": "checkbox"
+    },
+    {
+      "label": "实验性：绕过指定区域 IP",
+      "options": [
+        "禁用",
+        "绕过中国大陆",
+        "海外用户回国模式"
+      ],
+      "panel": "流量控制",
+      "type": "select"
+    },
+    {
+      "label": "仅允许内网",
+      "panel": "流量控制",
+      "type": "checkbox"
+    },
+    {
+      "label": "WAN 接口名称",
+      "panel": "流量控制",
+      "type": "text"
+    },
+    {
+      "label": "LAN 接口名称",
+      "options": [
+        "禁用",
+        "br-lan",
+        "eth0",
+        "lan2",
+        "lan3",
+        "lan4",
+        "pppoe-wan",
+        "wan",
+        "wlan0",
+        "wlan1"
+      ],
+      "panel": "流量控制",
+      "type": "select"
+    },
+    {
+      "label": "本地 IPv4 绕过地址",
+      "panel": "流量控制",
+      "type": "textarea"
+    },
+    {
+      "label": "本地 DNS 劫持",
+      "options": [
+        "禁用",
+        "使用 Dnsmasq 转发",
+        "使用防火墙转发"
+      ],
+      "panel": "DNS 设置",
+      "type": "select"
+    },
+    {
+      "label": "自动选择解锁节点",
+      "panel": "流媒体增强",
+      "type": "checkbox"
+    },
+    {
+      "label": "局域网访问控制模式",
+      "options": [
+        "黑名单模式",
+        "白名单模式"
+      ],
+      "panel": "黑白名单",
+      "type": "select"
+    },
+    {
+      "label": "走代理的局域网设备 IP",
+      "panel": "黑白名单",
+      "type": "text"
+    },
+    {
+      "label": "走代理的局域网设备 Mac",
+      "panel": "黑白名单",
+      "type": "text"
+    },
+    {
+      "label": "不走代理的 WAN IP",
+      "panel": "黑白名单",
+      "type": "text"
+    },
+    {
+      "label": "不走代理的 WAN 端口",
+      "panel": "黑白名单",
+      "type": "text"
+    },
+    {
+      "label": "管理页面端口",
+      "panel": "外部控制",
+      "type": "text"
+    },
+    {
+      "label": "管理页面登录密钥",
+      "panel": "外部控制",
+      "type": "text"
+    },
+    {
+      "label": "管理页面公网域名",
+      "panel": "外部控制",
+      "type": "text"
+    },
+    {
+      "label": "管理页面映射端口",
+      "panel": "外部控制",
+      "type": "text"
+    },
+    {
+      "label": "管理页面公网 SSL 访问",
+      "panel": "外部控制",
+      "type": "checkbox"
+    },
+    {
+      "label": "自定义 Dashboard URL",
+      "panel": "外部控制",
+      "type": "text"
+    },
+    {
+      "label": "Clash Dashboard 兼容模式",
+      "panel": "外部控制",
+      "type": "checkbox"
+    },
+    {
+      "label": "IPv6 流量代理",
+      "panel": "IPv6 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "允许 IPv6 类型 DNS 解析",
+      "panel": "IPv6 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动更新 GeoIP MMDB 数据库",
+      "panel": "GEO 数据库订阅",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动更新 GeoIP Dat 数据库",
+      "panel": "GEO 数据库订阅",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动更新 GeoSite 数据库",
+      "panel": "GEO 数据库订阅",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动更新 Geo ASN 数据库",
+      "panel": "GEO 数据库订阅",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动更新",
+      "panel": "大陆白名单订阅",
+      "type": "checkbox"
+    },
+    {
+      "label": "更新时间(每周)",
+      "options": [
+        "每天",
+        "每周一",
+        "每周二",
+        "每周三",
+        "每周四",
+        "每周五",
+        "每周六",
+        "每周日"
+      ],
+      "panel": "大陆白名单订阅",
+      "type": "select"
+    },
+    {
+      "label": "更新时间(每天)",
+      "options": [
+        "0:00",
+        "1:00",
+        "2:00",
+        "3:00",
+        "4:00",
+        "5:00",
+        "6:00",
+        "7:00",
+        "8:00",
+        "9:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00"
+      ],
+      "panel": "大陆白名单订阅",
+      "type": "select"
+    },
+    {
+      "label": "大陆 IP 段更新 URL",
+      "panel": "大陆白名单订阅",
+      "type": "text"
+    },
+    {
+      "label": "大陆 IPv6 段更新 URL",
+      "panel": "大陆白名单订阅",
+      "type": "text"
+    },
+    {
+      "label": "定时重启",
+      "panel": "定时重启",
+      "type": "checkbox"
+    },
+    {
+      "label": "重启时间(每周)",
+      "options": [
+        "每天",
+        "每周一",
+        "每周二",
+        "每周三",
+        "每周四",
+        "每周五",
+        "每周六",
+        "每周日"
+      ],
+      "panel": "定时重启",
+      "type": "select"
+    },
+    {
+      "label": "重启时间(每天)",
+      "options": [
+        "0:00",
+        "1:00",
+        "2:00",
+        "3:00",
+        "4:00",
+        "5:00",
+        "6:00",
+        "7:00",
+        "8:00",
+        "9:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00"
+      ],
+      "panel": "定时重启",
+      "type": "select"
+    }
+  ],
+  "services-openclash-config-overwrite": [
+    {
+      "label": "绑定网络接口",
+      "options": [
+        "br-lan",
+        "eth0",
+        "lan2",
+        "lan3",
+        "lan4",
+        "lo",
+        "pppoe-wan",
+        "wan",
+        "wlan0",
+        "wlan1",
+        "禁用"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "URL-Test 策略组切换灵敏度(ms)",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "测速（连通性）间隔修改(s)",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "测速（连通性）地址修改",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "GitHub 地址代理",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "日志等级",
+      "options": [
+        "禁用",
+        "Info【信息】",
+        "Warning【警告】",
+        "Error【错误】",
+        "Debug【调试】",
+        "Silent【静默】"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "DNS 监听端口",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "流量转发端口",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "TProxy 端口",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "HTTP(S) 代理端口",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "SOCKS5 代理端口",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "HTTP(S)&SOCKS5 混合代理端口",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "自定义上游 DNS 服务器",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "遵循规则(respect-rules)",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "追加上游 DNS",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "追加默认 DNS",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Fake-IP 地址范围 (IPv4 Cidr)",
+      "panel": "DNS 设置",
+      "type": "text"
+    },
+    {
+      "label": "Fake-IP 持久化",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Fallback-Filter",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Fake-IP-Filter",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Nameserver-Policy",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Proxy-Server-Nameserver-Policy",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Hosts",
+      "panel": "DNS 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用 TCP 并发",
+      "panel": "Meta 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用统一延迟",
+      "panel": "Meta 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "全局 User-Agent",
+      "panel": "Meta 设置",
+      "type": "text"
+    },
+    {
+      "label": "启用进程规则",
+      "options": [
+        "禁用",
+        "OFF",
+        "Always",
+        "strict"
+      ],
+      "panel": "Meta 设置",
+      "type": "select"
+    },
+    {
+      "label": "Geodata 数据加载方式",
+      "options": [
+        "禁用",
+        "低内存模式",
+        "标准模式"
+      ],
+      "panel": "Meta 设置",
+      "type": "select"
+    },
+    {
+      "label": "启用 GeoIP Dat 版数据库",
+      "panel": "Meta 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "启用流量（域名）探测",
+      "panel": "Meta 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Smart 策略自动切换",
+      "panel": "Smart 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Policy Priority(权重加成)",
+      "panel": "Smart 设置",
+      "type": "text"
+    },
+    {
+      "label": "ASN 优先",
+      "panel": "Smart 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "Smart 策略组排序灵敏度(ms)",
+      "panel": "Smart 设置",
+      "type": "text"
+    },
+    {
+      "label": "启用 LightGBM 模型",
+      "panel": "Smart 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "收集训练数据",
+      "panel": "Smart 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动更新模型",
+      "panel": "Smart 设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "仅代理命中规则流量",
+      "panel": "规则设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "自定义规则",
+      "panel": "规则设置",
+      "type": "checkbox"
+    }
+  ],
+  "system-mounts": [
+    {
+      "label": "生成配置",
+      "panel": "常规设置",
+      "type": "text",
+      "skip": true
+    },
+    {
+      "label": "挂载已连接的设备",
+      "panel": "常规设置",
+      "type": "text",
+      "skip": true
+    },
+    {
+      "label": "自动挂载未配置的 Swap 分区",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动挂载未配置的磁盘分区",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动挂载交换分区",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "自动挂载磁盘",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "在挂载前检查文件系统",
+      "panel": "常规设置",
+      "type": "checkbox"
+    }
+  ],
+  "system-argon-config": [
+    {
+      "label": "壁纸来源",
+      "options": [
+        "内建",
+        "Bing",
+        "GHSer",
+        "Unsplash",
+        "Wallhaven"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "分类 ID",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "API 密钥",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "精确匹配分辨率",
+      "panel": "常规设置",
+      "type": "checkbox"
+    },
+    {
+      "label": "主题模式",
+      "options": [
+        "跟随系统",
+        "亮色模式",
+        "暗黑模式"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "[亮色模式] 主色调",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "[亮色模式] 透明度",
+      "options": [
+        "0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9",
+        "1"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "[亮色模式] 毛玻璃模糊半径",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "[暗色模式] 主色调",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "[暗色模式] 透明度",
+      "options": [
+        "0",
+        "0.1",
+        "0.2",
+        "0.3",
+        "0.4",
+        "0.5",
+        "0.6",
+        "0.7",
+        "0.8",
+        "0.9",
+        "1"
+      ],
+      "panel": "常规设置",
+      "type": "select"
+    },
+    {
+      "label": "[暗色模式] 毛玻璃模糊半径",
+      "panel": "常规设置",
+      "type": "text"
+    },
+    {
+      "label": "保存设置",
+      "panel": "常规设置",
+      "type": "text",
+      "skip": true
+    },
+    {
+      "label": "上传背景",
+      "panel": "常规设置",
+      "type": "text",
+      "skip": true
+    }
+  ]
+}

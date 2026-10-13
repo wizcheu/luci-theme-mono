@@ -1,14 +1,17 @@
 {
- "name": "luci-theme-mono",
- "version": "0.1.0",
- "private": true,
- "description": "Development-only browser checks. No npm dependencies ship to the router.",
- "scripts": {
-  "test": "playwright test",
-  "preview": "python3 scripts/preview.py",
-  "build": "python3 scripts/build.py"
- },
- "devDependencies": {
-  "@playwright/test": "1.64.0"
- }
+  "name": "luci-theme-mono",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Development-only browser checks. No npm dependencies ship to the router.",
+  "scripts": {
+    "test": "playwright test",
+    "preview": "python3 scripts/mirror.py --port 8101",
+    "build": "python3 scripts/build.py",
+    "preview:legacy": "python3 scripts/preview.py --port 8102",
+    "test:unit": "python3 -m unittest discover -s tests -p \"test_*.py\" -v",
+    "preview:render": "ucode -L \"$PWD/preview/stubs\" scripts/render-preview.uc"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
 }

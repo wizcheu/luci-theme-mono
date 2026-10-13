@@ -1,0 +1,23 @@
+<!-- Native LuCI markup fixtures. Synthetic values; no router RPC or writes. -->
+<h2>原生组件回归</h2>
+<p class="cbi-map-descr">使用 LuCI 的 data-tab、cbi-section 和原生表单结构。此页仅用于开发验证。</p>
+<div id="native-check-results" role="status"></div>
+<button class="btn" id="native-run-checks" type="button">运行回归检查</button>
+<div id="view">
+ <div class="cbi-map" id="map">
+  <ul class="cbi-tabmenu" id="native-tabs"></ul>
+  <div id="native-panels"></div>
+ </div>
+ <h3>页面背景上的原生控件</h3>
+ <div class="native-fixture-fields">
+  <label>类型 <select id="fixture-select"><option>任意</option><option>系统</option></select></label>
+  <label>筛选 <input type="search" id="fixture-input" placeholder="输入以筛选…"></label>
+  <label>脚本 <textarea id="fixture-textarea" rows="5"># Synthetic fixture
+exit 0</textarea></label>
+  <div class="control-group"><input type="text" aria-label="软件包" placeholder="软件包名称或 URL…"><button type="button" class="cbi-button">确认</button></div>
+  <div class="cbi-dropdown" tabindex="0"><ul><li selected display="0">未指定</li></ul><span class="open">▾</span></div>
+  <input class="cbi-button cbi-button-up" type="button" value="↑" title="上移">
+  <button class="cbi-button cbi-button-down" type="button" title="下移">↓</button>
+ </div>
+</div>
+<script src="/preview/native-regression.js"></script>

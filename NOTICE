@@ -18,3 +18,8 @@ The visual direction is inspired by shadcn/ui's neutral dashboard.
 Reference: https://ui.shadcn.com/view/new-york-v4/dashboard-01
 Mono uses native LuCI templates and widgets; it does not bundle React,
 Tailwind, Radix, shadcn/ui JavaScript, fonts, or remote assets.
+
+The native preview, UI adapters and dashboard are adapted from the sibling
+luci-theme-aeris repository, Copyright 2026 wizcheu, Apache-2.0.
+Preview-only third-party assets retain their licenses in preview/mirror/NOTICE.md.
+Design token reference: https://ui.shadcn.com/docs/theming

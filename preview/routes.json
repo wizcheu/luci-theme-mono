@@ -1,0 +1,309 @@
+{
+  "groups": [
+    {
+      "id": "status",
+      "title": "状态",
+      "pages": [
+        {
+          "id": "mono",
+          "title": "网络概览",
+          "template": "overview",
+          "path": "status/mono",
+          "file": "status-mono",
+          "subpages": []
+        },
+        {
+          "id": "overview",
+          "title": "系统状态",
+          "template": "admin-page",
+          "path": "status/overview",
+          "file": "status-overview",
+          "subpages": []
+        },
+        {
+          "id": "routesj",
+          "title": "路由状态",
+          "template": "admin-page",
+          "path": "status/routesj",
+          "file": "status-routesj",
+          "subpages": []
+        },
+        {
+          "id": "nftables",
+          "title": "防火墙状态",
+          "template": "admin-page",
+          "path": "status/nftables",
+          "file": "status-nftables",
+          "subpages": []
+        },
+        {
+          "id": "logs",
+          "title": "系统日志",
+          "template": "admin-page",
+          "path": "status/logs",
+          "file": "status-logs",
+          "subpages": []
+        },
+        {
+          "id": "processes",
+          "title": "进程",
+          "template": "admin-page",
+          "path": "status/processes",
+          "file": "status-processes",
+          "subpages": []
+        },
+        {
+          "id": "channel_analysis",
+          "title": "信道分析",
+          "template": "admin-page",
+          "path": "status/channel_analysis",
+          "file": "status-channel_analysis",
+          "subpages": []
+        },
+        {
+          "id": "realtime",
+          "title": "实时信息",
+          "template": "admin-page",
+          "path": "status/realtime",
+          "file": "status-realtime",
+          "subpages": [
+            "load",
+            "bandwidth",
+            "wireless",
+            "connections"
+          ]
+        },
+        {
+          "id": "components",
+          "title": "组件库",
+          "template": "components",
+          "path": "status/components",
+          "file": "status-components",
+          "subpages": []
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "title": "系统",
+      "pages": [
+        {
+          "id": "system",
+          "title": "系统设置",
+          "template": "system",
+          "path": "system/system",
+          "file": "system-system",
+          "subpages": []
+        },
+        {
+          "id": "admin",
+          "title": "管理权",
+          "template": "admin-page",
+          "path": "system/admin",
+          "file": "system-admin",
+          "subpages": [
+            "password",
+            "dropbear",
+            "sshkeys",
+            "uhttpd",
+            "repokeys"
+          ]
+        },
+        {
+          "id": "package-manager",
+          "title": "软件包",
+          "template": "admin-page",
+          "path": "system/package-manager",
+          "file": "system-package-manager",
+          "subpages": []
+        },
+        {
+          "id": "startup",
+          "title": "启动项",
+          "template": "admin-page",
+          "path": "system/startup",
+          "file": "system-startup",
+          "subpages": []
+        },
+        {
+          "id": "crontab",
+          "title": "计划任务",
+          "template": "admin-page",
+          "path": "system/crontab",
+          "file": "system-crontab",
+          "subpages": []
+        },
+        {
+          "id": "mounts",
+          "title": "挂载点",
+          "template": "admin-page",
+          "path": "system/mounts",
+          "file": "system-mounts",
+          "subpages": []
+        },
+        {
+          "id": "leds",
+          "title": "LED 配置",
+          "template": "admin-page",
+          "path": "system/leds",
+          "file": "system-leds",
+          "subpages": []
+        },
+        {
+          "id": "flash",
+          "title": "备份与更新",
+          "template": "admin-page",
+          "path": "system/flash",
+          "file": "system-flash",
+          "subpages": []
+        },
+        {
+          "id": "argon-config",
+          "title": "Argon 主题设置",
+          "template": "admin-page",
+          "path": "system/argon-config",
+          "file": "system-argon-config",
+          "subpages": []
+        },
+        {
+          "id": "reboot",
+          "title": "重启",
+          "template": "admin-page",
+          "path": "system/reboot",
+          "file": "system-reboot",
+          "subpages": []
+        },
+        {
+          "id": "ttyd",
+          "title": "终端",
+          "template": "admin-page",
+          "path": "system/ttyd",
+          "file": "system-ttyd",
+          "subpages": []
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "title": "服务",
+      "pages": [
+        {
+          "id": "openclash",
+          "title": "OpenClash",
+          "template": "admin-page",
+          "path": "services/openclash",
+          "file": "services-openclash",
+          "subpages": [
+            "client",
+            "settings",
+            "config-overwrite",
+            "config-subscribe",
+            "config",
+            "log"
+          ]
+        },
+        {
+          "id": "ddns",
+          "title": "动态 DNS",
+          "template": "admin-page",
+          "path": "services/ddns",
+          "file": "services-ddns",
+          "subpages": []
+        },
+        {
+          "id": "wol",
+          "title": "网络唤醒",
+          "template": "admin-page",
+          "path": "services/wol",
+          "file": "services-wol",
+          "subpages": []
+        },
+        {
+          "id": "upnp",
+          "title": "UPnP IGD 和 PCP",
+          "template": "admin-page",
+          "path": "services/upnp",
+          "file": "services-upnp",
+          "subpages": []
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "title": "网络",
+      "pages": [
+        {
+          "id": "network",
+          "title": "接口",
+          "template": "network",
+          "path": "network/network",
+          "file": "network-network",
+          "subpages": []
+        },
+        {
+          "id": "wireless",
+          "title": "无线",
+          "template": "admin-page",
+          "path": "network/wireless",
+          "file": "network-wireless",
+          "subpages": []
+        },
+        {
+          "id": "routes",
+          "title": "路由",
+          "template": "admin-page",
+          "path": "network/routes",
+          "file": "network-routes",
+          "subpages": []
+        },
+        {
+          "id": "dhcp",
+          "title": "DHCP",
+          "template": "admin-page",
+          "path": "network/dhcp",
+          "file": "network-dhcp",
+          "subpages": []
+        },
+        {
+          "id": "dns",
+          "title": "DNS",
+          "template": "admin-page",
+          "path": "network/dns",
+          "file": "network-dns",
+          "subpages": []
+        },
+        {
+          "id": "diagnostics",
+          "title": "网络诊断",
+          "template": "admin-page",
+          "path": "network/diagnostics",
+          "file": "network-diagnostics",
+          "subpages": []
+        },
+        {
+          "id": "firewall",
+          "title": "防火墙",
+          "template": "admin-page",
+          "path": "network/firewall",
+          "file": "network-firewall",
+          "subpages": [
+            "zones",
+            "forwards",
+            "rules",
+            "snats",
+            "ipsets",
+            "custom"
+          ]
+        },
+        {
+          "id": "turboacc",
+          "title": "Turbo ACC 网络加速",
+          "template": "admin-page",
+          "path": "network/turboacc",
+          "file": "network-turboacc",
+          "subpages": []
+        }
+      ]
+    }
+  ]
+}

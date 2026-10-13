@@ -1,6 +1,15 @@
 (function () {
  'use strict';
  function setup() {
+  document.querySelectorAll('[data-mono-password]').forEach(function(button) {
+   button.setAttribute('aria-pressed', 'false');
+   button.addEventListener('click', function() {
+    var input = button.parentElement.querySelector('input');
+    var reveal = input.type === 'password';
+    input.type = reveal ? 'text' : 'password';
+    button.setAttribute('aria-pressed', String(reveal));
+   });
+  });
   var sidebar = document.getElementById('mono-sidebar');
   var toggle = document.getElementById('mono-sidebar-toggle');
   var backdrop = document.getElementById('mono-backdrop');
@@ -40,6 +49,14 @@
   });
   mobile.addEventListener('change', reset);
   reset();
+  document.addEventListener('keydown', function(event) {
+   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+    event.preventDefault();
+    setOpen(true);
+    var search = document.getElementById('mono-menu-search');
+    if (search) { search.readOnly = false; search.focus(); search.select(); }
+   }
+  });
   if (appearance) {
    function syncAppearance() { appearance.setAttribute('aria-pressed', String(document.documentElement.dataset.darkmode === 'true')); }
    appearance.addEventListener('click', function () {

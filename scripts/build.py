@@ -71,12 +71,12 @@ def build(out: Path, epoch: int):
     data = archive(files, epoch)
     control = f"""Package: {PACKAGE}
 Version: {version}
-Depends: luci-base
+Depends: luci-base, rpcd-mod-luci
 Source: custom
 Section: luci
 Architecture: all
 Maintainer: wizcheu
-Installed-Size: {len(data)}
+Installed-Size: {sum(len(content) for content, _ in files.values())}
 Description: A monochrome LuCI theme inspired by shadcn/ui, for ucode-based LuCI.
 License: Apache-2.0
 """
@@ -94,10 +94,12 @@ if ( . /etc/uci-defaults/30_luci-theme-mono ); then
 fi
 rm -f /tmp/luci-indexcache.*
 rm -rf /tmp/luci-modulecache/
+[ ! -x /etc/init.d/rpcd ] || /etc/init.d/rpcd reload
 exit 0
 """
     postrm = """#!/bin/sh
 [ -n "$IPKG_INSTROOT" ] && exit 0
+[ "$1" = upgrade ] && exit 0
 if [ "$(uci -q get luci.main.mediaurlbase)" = /luci-static/mono ]; then
     uci -q delete luci.main.mediaurlbase
 fi

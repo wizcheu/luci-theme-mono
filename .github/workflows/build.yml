@@ -32,9 +32,12 @@ jobs:
           cmake --build "$RUNNER_TEMP/ucode-build" --target ucode fs_lib -j2
           "$RUNNER_TEMP/ucode-build/ucode" -L "$RUNNER_TEMP/ucode-build" -L "$GITHUB_WORKSPACE/preview/stubs" scripts/render-preview.uc
           git diff --exit-code -- preview/generated
+      - name: Validate release metadata
+        run: python3 scripts/check.py
       - name: Validate package and hooks
         run: |
           python3 -m unittest discover -s tests -p 'test_*.py' -v
+          node --test tests/*.test.cjs
           node --check htdocs/luci-static/resources/menu-mono.js
           node --check htdocs/luci-static/mono/shell.js
           node --check htdocs/luci-static/mono/appearance.js
@@ -79,4 +82,4 @@ jobs:
       - name: Publish tagged release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/* --verify-tag --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" dist/* --verify-tag --title "Mono ${GITHUB_REF_NAME#v}" --notes-file docs/release-notes.md

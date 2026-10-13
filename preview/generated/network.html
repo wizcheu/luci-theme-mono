@@ -9,19 +9,35 @@
  <script src="/luci-static/mono/appearance.js"></script>
  <link rel="stylesheet" href="/luci-static/mono/compat.css">
  <link rel="stylesheet" href="/luci-static/mono/mono.css">
+ <link rel="stylesheet" href="/luci-static/mono/dashboard.css">
+ <link rel="stylesheet" href="/luci-static/mono/pages.css">
+ <link rel="stylesheet" href="/luci-static/mono/router-pages.css">
+ <link rel="stylesheet" href="/luci-static/mono/controls.css">
+ <script src="/luci-static/mono/controls.js"></script>
+ <link rel="stylesheet" href="/luci-static/mono/ui.css">
+ <script src="/luci-static/mono/ui.js"></script>
+ <link rel="stylesheet" href="/luci-static/mono/native.css">
+ <script defer src="/luci-static/mono/native.js"></script>
  <link rel="icon" href="/luci-static/mono/mark.svg" type="image/svg+xml">
  <script src="/cgi-bin/luci/admin/translations/zh-cn"></script>
- <script src="/luci-static/resources/cbi.js"></script>
- <script defer src="/luci-static/mono/shell.js"></script>
+<script src="/luci-static/resources/cbi.js"></script> <script defer src="/luci-static/mono/shell.js"></script>
+ <link rel="stylesheet" href="/luci-static/mono/shadcn.css">
 </head>
 <body class="mono lang_zh-cn" data-page="admin-network-network">
  <a class="mono-skip" href="#maincontent">跳到内容</a>
  <aside id="mono-sidebar" class="mono-sidebar" aria-label="主菜单">
-  <a class="mono-brand" href="/cgi-bin/luci/admin">
+  <a class="mono-brand" href="/cgi-bin/luci/admin/status/mono">
    <span class="mono-mark" aria-hidden="true"></span>
-   <span><strong>OpenWrt</strong><small>OpenWrt · Mono</small></span>
+   <span><strong>Mono<span class="mono-brand-dot">.</span></strong><small>OpenWrt 管理控制台</small></span>
   </a>
-  <div class="mono-nav-search"><input id="mono-menu-search" type="search" placeholder="搜索菜单…" aria-label="搜索菜单…" autocomplete="off"></div>
+  <div class="mono-nav-search">
+   <form id="mono-menu-search-form" class="mono-menu-search-form" role="search" autocomplete="off">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+    <input id="mono-menu-search" name="mono-menu-query" type="search" placeholder="搜索菜单…" aria-label="搜索菜单" autocomplete="off" autocapitalize="none" spellcheck="false" data-lpignore="true" data-1p-ignore readonly>
+    <button id="mono-menu-search-clear" type="button" aria-label="清空菜单搜索" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+   </form>
+  </div>
+  <div class="mono-nav-caption">控制面板</div>
   <nav id="mono-navigation" aria-label="主菜单"><span class="mono-menu-loading">正在加载…</span></nav>
   <div id="mono-menu-empty" class="mono-menu-empty" hidden>没有匹配的菜单</div>
   <div class="mono-sidebar-foot"><span class="mono-device-label">Redmi AX6000</span><div id="modemenu" hidden></div></div>
@@ -37,18 +53,11 @@
   <main id="maincontent" class="container" tabindex="-1">
    <noscript><div class="alert-message warning"><h4>需要 JavaScript</h4><p>请启用 JavaScript 后使用 LuCI。</p></div></noscript>
    <div id="tabmenu" style="display:none"></div>
-<div class="cbi-map" id="view">
- <h2>接口</h2><div class="cbi-map-descr">管理网络接口、地址与连接方式。本地演示数据。</div>
- <ul class="cbi-tabmenu"><li class="cbi-tab"><a href="/cgi-bin/luci/admin/network/network">接口</a></li><li class="cbi-tab-disabled"><a href="/cgi-bin/luci/admin/status/components">设备样式</a></li></ul>
- <div class="cbi-section"><h3>网络接口</h3><table class="table cbi-section-table"><thead><tr class="tr cbi-section-table-titles"><th class="th">接口</th><th class="th">协议 / 设备</th><th class="th">地址</th><th class="th">状态</th><th class="th right">操作</th></tr></thead><tbody>
-  <tr class="tr"><td class="td"><strong>LAN</strong></td><td class="td">静态地址<br><small>br-lan</small></td><td class="td">192.168.1.1/24</td><td class="td">已连接</td><td class="td cbi-section-actions"><button class="cbi-button cbi-button-edit" data-demo-action="edit">编辑</button><button class="cbi-button cbi-button-negative" data-demo-action="stop">停止</button></td></tr>
-  <tr class="tr"><td class="td"><strong>WAN</strong></td><td class="td">DHCP 客户端<br><small>eth1</small></td><td class="td">192.0.2.16/24</td><td class="td">已连接</td><td class="td cbi-section-actions"><button class="cbi-button cbi-button-edit" data-demo-action="edit">编辑</button><button class="cbi-button cbi-button-negative" data-demo-action="stop">停止</button></td></tr>
-  <tr class="tr"><td class="td"><strong>WAN6</strong></td><td class="td">DHCPv6 客户端<br><small>@wan</small></td><td class="td">2001:db8::16/64</td><td class="td">已连接</td><td class="td cbi-section-actions"><button class="cbi-button cbi-button-edit" data-demo-action="edit">编辑</button><button class="cbi-button cbi-button-negative" data-demo-action="stop">停止</button></td></tr>
- </tbody></table></div>
- <div class="cbi-page-actions"><button class="cbi-button" data-demo-action="add">添加新接口…</button><button class="cbi-button cbi-button-apply" data-demo-action="apply">保存并应用</button></div>
-</div>
+<div id="view" class="mono-router-design" data-router-page="network"></div>
+<script src="/preview/router-schema.js"></script>
+<script src="/preview/router-design.js"></script>
   </main>
-  <footer class="mono-footer"><span>Mono <span aria-hidden="true">·</span> <a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">LuCI</a></span><span>OpenWrt 预览</span></footer>
+  <footer class="mono-footer"><span>Mono <span aria-hidden="true">·</span> <a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">LuCI</a></span><span>OpenWrt 24.10.5</span></footer>
  </div>
  <script>L.require('menu-mono').catch(function(error) { var target = document.getElementById('mono-navigation'); target.textContent = error.message || String(error); });</script>
 </body>

@@ -3,17 +3,22 @@
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import argparse
+import json
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = {
-    "/": "overview", "/cgi-bin/luci/admin": "overview",
-    "/cgi-bin/luci/admin/status/overview": "overview",
-    "/cgi-bin/luci/admin/network/network": "network",
-    "/cgi-bin/luci/admin/system/system": "system",
-    "/cgi-bin/luci/admin/status/components": "components",
-    "/cgi-bin/luci/admin/logout": "login", "/login": "login", "/login-error": "login-error",
-}
+CATALOG = json.loads((ROOT / "preview/routes.json").read_text())
+PAGES = {"/": "status-mono", "/cgi-bin/luci": "status-mono", "/cgi-bin/luci/admin": "status-mono",
+         "/native-regression": "native-regression",
+         "/cgi-bin/luci/admin/logout": "login", "/login": "login", "/login-error": "login-error"}
+for group in CATALOG["groups"]:
+    PAGES["/cgi-bin/luci/admin/" + group["id"]] = group["pages"][0]["file"]
+    for page in group["pages"]:
+        path = "/cgi-bin/luci/admin/" + page["path"]
+        PAGES[path] = page["file"]
+        for subpage in page.get("subpages", []):
+            PAGES[path + "/" + subpage] = page["file"]
+
 
 
 class Preview(SimpleHTTPRequestHandler):
@@ -54,7 +59,7 @@ class PreviewServer(ThreadingHTTPServer):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--port", type=int, default=8098)
+    parser.add_argument("--port", type=int, default=8102)
     args = parser.parse_args()
     server = PreviewServer(("127.0.0.1", args.port), lambda *a, **k: Preview(*a, directory=str(ROOT), **k))
     print(f"Mono preview: http://127.0.0.1:{args.port} (fictional data)", flush=True)

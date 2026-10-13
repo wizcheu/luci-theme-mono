@@ -48,7 +48,7 @@ class PackageTests(unittest.TestCase):
         self.assertEqual(set(self.outer), {"debian-binary", "control.tar.gz", "data.tar.gz"})
         self.assertEqual(self.outer["debian-binary"][0], b"2.0\n")
         self.assertIn(b"Architecture: all\n", self.control["control"][0])
-        self.assertIn(b"Depends: luci-base\n", self.control["control"][0])
+        self.assertIn(b"Depends: luci-base, rpcd-mod-luci\n", self.control["control"][0])
         self.assertIn("usr/share/ucode/luci/template/themes/mono/header.ut", self.data)
         self.assertIn("usr/share/ucode/luci/template/themes/mono/sysauth.ut", self.data)
         self.assertIn("www/luci-static/resources/menu-mono.js", self.data)
@@ -107,6 +107,14 @@ p.write_text(json.dumps(s))
             self.assertEqual(data["luci.main.mediaurlbase"], "/luci-static/argon")
             self.assertEqual(data["luci.themes.Mono"], "/luci-static/mono")
             self.assertEqual(data["luci.themes.Argon"], "/luci-static/argon")
+
+    def test_upgrade_keeps_registration_and_active_theme(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            state, env = self.uci_environment(Path(temporary))
+            initial = {"luci.main.mediaurlbase": "/luci-static/mono", "luci.themes.Mono": "/luci-static/mono", "luci.themes.Argon": "/luci-static/argon"}
+            state.write_text(json.dumps(initial))
+            subprocess.run(["sh", "-s", "--", "upgrade"], input=self.control["postrm"][0], env=env, check=True)
+            self.assertEqual(json.loads(state.read_text()), initial)
 
     def test_removal_only_resets_selection_when_mono_is_active(self):
         with tempfile.TemporaryDirectory() as temporary:

@@ -1,0 +1,33 @@
+/* Shared Segment and Select. Ecme: 4px track padding, 12px corners, 48px medium. */
+.mono-control-icon { width:18px; height:18px; flex-shrink:0; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.mono-segment { display:inline-flex; align-items:stretch; gap:8px; max-width:100%; padding:4px; border-radius:12px; background:var(--mono-control); vertical-align:middle; }
+.mono .mono-segment-item { display:inline-flex; justify-content:center; align-items:center; gap:7px; flex:1 0 auto; min-width:0; height:40px; padding:8px 20px; margin:0; border:0; border-radius:12px; background:transparent; color:var(--mono-muted); font:600 14px/1.4 var(--font-sans); white-space:nowrap; cursor:pointer; box-shadow:none; text-shadow:none; transition:background-color .15s,color .15s,box-shadow .15s; }
+.mono .mono-segment-item:hover:not(:disabled) { color:var(--mono-foreground); }
+.mono .mono-segment-item:is([aria-checked="true"],[aria-pressed="true"]) { color:var(--mono-foreground); background:var(--mono-background); box-shadow:0 1px 3px #0000001a,0 1px 2px -1px #0000001a; }
+.mono .mono-segment-item:disabled { opacity:.4; cursor:not-allowed; }
+.mono-segment--block { display:flex; width:100%; }
+.mono .mono-segment--xs .mono-segment-item { height:24px; padding:3px 10px; font-size:12px; border-radius:8px; }
+.mono .mono-segment--sm .mono-segment-item { height:32px; padding:5px 14px; font-size:13px; border-radius:10px; }
+.mono .mono-segment--lg .mono-segment-item { height:48px; padding:10px 24px; font-size:16px; }
+.mono-segment-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--mono-primary); }
+.mono-segment-dot.upload { background:#48b79b; }
+.mono-select { display:inline-block; min-width:0; vertical-align:middle; }
+.mono-select--block { display:block; width:100%; }
+.mono .mono-select-trigger { display:flex; align-items:center; justify-content:space-between; gap:16px; width:100%; min-height:48px; height:48px; padding:10px 13px; border:1px solid var(--mono-control-border); border-radius:12px; background:var(--mono-control); color:var(--mono-foreground); font:600 14px/1.5 var(--font-sans); text-align:left; cursor:pointer; box-shadow:none; }
+.mono-select-caption { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mono-select-trigger > .mono-control-icon { width:17px; height:17px; color:var(--mono-muted); }
+.mono .mono-select-trigger[aria-expanded="true"] { border-color:#2a85ff; background:var(--mono-background); outline:0; }
+.mono .mono-select-trigger:disabled { cursor:not-allowed; opacity:.45; }
+.mono .mono-select--xs .mono-select-trigger { height:32px; min-height:32px; padding:4px 10px; font-size:12px; border-radius:9px; }
+.mono .mono-select--sm .mono-select-trigger { height:40px; min-height:40px; padding:7px 12px; font-size:13px; }
+.mono .mono-select--lg .mono-select-trigger { height:56px; min-height:56px; padding:12px 16px; font-size:16px; }
+.mono-select-popup { position:fixed; z-index:1000; overflow:auto; padding:6px; border:1px solid var(--mono-border); border-radius:13px; background:var(--mono-background); color:var(--mono-foreground); box-shadow:0 10px 30px #0002; }
+.mono-select-option { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:42px; padding:10px 12px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:550; }
+.mono-select-option > span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mono-select-option:is(:hover,.is-focused):not([aria-disabled="true"]) { background:var(--mono-control); }
+.mono-select-option[aria-selected="true"] { color:var(--mono-accent); }
+.mono-select-option[aria-disabled="true"] { opacity:.4; cursor:not-allowed; }
+.mono-select-option .mono-control-icon { width:17px; height:17px; }
+:root[data-darkmode="true"] .mono .mono-segment-item:is([aria-checked="true"],[aria-pressed="true"]) { background:#4b5059; }
+:root[data-darkmode="true"] .mono-select-popup { box-shadow:0 12px 32px #0005; }
+@media(prefers-reduced-motion:reduce) { .mono .mono-segment-item { transition:none; } }
