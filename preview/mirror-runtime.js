@@ -7,13 +7,14 @@
     bar.setAttribute('aria-label','本地真实页面预览');
     bar.innerHTML='<span class="mirror-status-dot"></span><strong>Mono 预览</strong><span>示例数据 · 本地模拟</span>';
     const components=document.createElement('a');components.href='/cgi-bin/luci/admin/status/components';components.textContent='组件规范';bar.append(components);
-    // Existing LuCI sessions can retain the old captured menu in local storage.
-    if(window.L)L.require('ui').then(ui=>ui.menu.load().then(tree=>{
+    // Let the production theme invalidate stale caches before extending its menu.
+    // Otherwise this callback can repaint an old tree over the upgraded menu.
+    if(window.L)Promise.all([L.require('menu-mono'),L.require('ui')]).then(([menu,ui])=>ui.menu.load().then(tree=>{
       const status=tree.children?.admin?.children?.status;
       if(status && !status.children.components){
         status.children.components={title:'组件规范',order:99,satisfied:true,action:{type:'view',path:'preview/components'}};
         ui.menu.flushCache();
-        L.require('menu-mono').then(menu=>menu.render(tree));
+        menu.render(tree);
       }
     }));
     const reset=document.createElement('button');reset.type='button';reset.textContent='重置示例';

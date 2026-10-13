@@ -7,8 +7,13 @@ return baseclass.extend({
  __init__: function() {
   // LuCI keeps the menu in the authenticated browser session across upgrades.
   // Its resource version changes when opkg updates the installed package list.
-  var version = L.env.resource_version || 'mono-1.0.1';
-  if (session.getLocalData('mono-menu-version') !== version) ui.menu.flushCache();
+  var version = L.env.resource_version || 'mono-1.0.2';
+  if (session.getLocalData('mono-menu-version') !== version) {
+   ui.menu.flushCache();
+   // flushCache() clears session storage only. Another view may already have
+   // loaded that stale tree into UIMenu before the theme module initializes.
+   ui.menu.menu = null;
+  }
   return ui.menu.load().then(function(tree) {
    session.setLocalData('mono-menu-version', version);
    return this.render(tree);
